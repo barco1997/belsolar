@@ -33,6 +33,7 @@ const NavBarWrapper = styled.div`
   border-style: ${props => (props.color ? 'none' : 'solid')};
   border-width: 0px 0px 1px 0px;
   border-color: #eee7e1;
+  ${media.desktop`height: 60px;`};
 `;
 
 const Menu = styled.div`

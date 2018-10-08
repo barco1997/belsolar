@@ -29,7 +29,7 @@ import styled from 'styled-components';
 //  import * as Yup from 'yup';
 import NavBar from '../../components/NavBar/index';
 import Footer from '../../components/Footer/index';
-import GoogleMapsContainer from '../../components/GoogleMapsContainer/index';
+import YandexMapsContainer from '../../components/YandexMapsContainer/index';
 //  import CouponHistory from '../../components/CouponHistory';
 //  import GoodHistory from '../../components/GoodHistory';
 // import messages from './messages';
@@ -76,7 +76,7 @@ const InfoWrapper = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   line-height: 35px;
-  margin-top: 57vh;
+  margin-top: 8vh;
   & > :nth-child(1) {
     margin-left: 20px;
     margin-right: 20px;
@@ -112,7 +112,7 @@ export class Contacts extends React.Component {
         <BackGround>
           <div style={{ height: '100%', minHeight: '100vh' }}>
             <div style={{ paddingTop: '90px' }}>
-              <GoogleMapsContainer />
+              <YandexMapsContainer />
             </div>
             <InfoWrapper>
               <div>

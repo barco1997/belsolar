@@ -8,6 +8,8 @@ import { Switch, Route, Redirect } from 'react-router';
 import MainPage from './containers/MainPage/index';
 import Contacts from './containers/Contacts/index';
 import Products from './containers/Products/index';
+import MoreInfoPage from './containers/MoreInfoPage/index';
+import CataloguePage from './containers/CataloguePage/index';
 // import SomePage from './components/SomePage';
 // import SomeOtherPage from './components/SomeOtherPage';
 import styled from 'styled-components';
@@ -32,6 +34,8 @@ export function Routes() {
         <Route exact path="/main" component={MainPage} />
         <Route exact path="/products" component={Products} />
         <Route exact path="/contacts" component={Contacts} />
+        <Route exact path="/products/:id" component={MoreInfoPage} />
+        <Route exact path="/catalogue" component={CataloguePage} />
       </Switch>
     </AppWrapper>
   );

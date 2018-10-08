@@ -28,11 +28,15 @@ import axios from 'axios';
 //  import { withFormik } from 'formik';
 //  import * as Yup from 'yup';
 import NavBar from '../../components/NavBar/index';
-import ProductsBar from '../../components/ProductsBar/index';
-import ProductItem from '../../components/ProductItem/index';
 import Footer from '../../components/Footer/index';
+import More2 from './More2.png';
+import More3 from './More3.png';
+import More4 from './More4.png';
+import More5 from './More5.png';
+import More6 from './More6.png';
+import More7 from './More7.png';
 
-//  import GoogleMapsContainer from '../../components/GoogleMapsContainer/index';
+//  import YandexMapsContainer from '../../components/YandexMapsContainer/index';
 //  import CouponHistory from '../../components/CouponHistory';
 //  import GoodHistory from '../../components/GoodHistory';
 // import messages from './messages';
@@ -49,6 +53,8 @@ const BackGround = styled.div`
   z-index: 1;
   display: flex;
   width: 100%;
+  font-family: 'Century Gothic';
+  font-size: 32px;
   flex-direction: column;
 
   background-color: #fcfcfc; /* The image used */
@@ -68,81 +74,134 @@ const StyledFooter = styled.div`
 `;
 
 const InfoWrapper = styled.div`
-  max-width: 80%;
+  width: 100%;
   display: flex;
-
+  flex-direction: row;
   font-family: 'Century Gothic';
-  font-size: 19px;
+  font-size: 21px;
   text-decoration: none;
   color: black;
 
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
-  align-content: flex-start;
-  margin-top: 195px;
-  margin-right: -30px;
-  margin-left: -30px;
-
-  & > div {
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-bottom: 50px;
+  line-height: 35px;
+  margin-top: 50px;
+  & > :nth-child(1) {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  & > :nth-child(2) {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: -20px;
   }
 `;
 
+const MainImage = styled.img`
+  margin-top: 3px;
+  width: 350px;
+  height: 201px;
+`;
+
+const Description = styled.div`
+  width: 581px;
+
+  & > p {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 170px;
+  }
+`;
+
+const LowRow = styled.div`
+  max-width: 1011px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: -0px -15px;
+`;
+
+const LowRowItem = styled.img`
+  margin: 15px 15px;
+  width: 137px;
+  height: 100px;
+`;
+
+/* const BottomPhotos = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  margin-top: 8vh;
+`; */
 /* eslint-disable react/prefer-stateless-function */
-/* eslint-disable quotes */
-export class Products extends React.Component {
+export class MoreInfoPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: [],
+      post: [],
+      images: [],
     };
   }
   componentDidMount() {
+    console.log('crap man', this.props.match.params.id);
     axios
       .get(
-        'http://public-api.wordpress.com/rest/v1/sites/positano191751113.wordpress.com/posts',
+        'http://public-api.wordpress.com/rest/v1/sites/positano191751113.wordpress.com/posts/'.concat(
+          this.props.match.params.id,
+        ),
       )
       .then(res => {
         this.setState({
-          posts: res.data.posts.filter(post => post.categories.products),
+          post: res.data,
         });
-        console.log(this.state.posts);
+        console.log(this.state.post);
       })
       .catch(error => console.log(error));
   }
   render() {
-    function removeUnicode(props) {
-      return props.replace(/&nbsp;/g, '');
-    }
     return (
       <CouponInfoWrapper>
         <StyledBar>
           <NavBar />
-          <ProductsBar />
         </StyledBar>
         <BackGround>
           <div
             style={{
-              width: '100%',
               height: '100%',
               minHeight: '100vh',
+              flexDirection: 'column',
               display: 'flex',
-              justifyContent: 'center',
-              maxWidth: '1440px',
+              alignItems: 'center',
             }}
           >
+            <div
+              style={{ paddingTop: '120px' }}
+              dangerouslySetInnerHTML={{ __html: this.state.post.title }}
+            />
             <InfoWrapper>
-              {this.state.posts.map(post => (
-                <ProductItem
-                  background={post.featured_image}
-                  title={removeUnicode(post.title)}
-                  description={removeUnicode(post.excerpt)}
-                  to={`/products/${post.ID}`}
-                />
-              ))}
+              <MainImage src={this.state.post.featured_image} alt="image" />
+              <Description
+                dangerouslySetInnerHTML={{ __html: this.state.post.excerpt }}
+              />
             </InfoWrapper>
+            <LowRow>
+              <LowRowItem src={More2} alt="image" />
+              <LowRowItem src={More3} alt="image" />
+              <LowRowItem src={More4} alt="image" />
+              <LowRowItem src={More5} alt="image" />
+              <LowRowItem src={More6} alt="image" />
+              <LowRowItem src={More7} alt="image" />
+            </LowRow>
           </div>
           <StyledFooter>
             <Footer />
@@ -153,4 +212,4 @@ export class Products extends React.Component {
   }
 }
 
-export default Products;
+export default MoreInfoPage;

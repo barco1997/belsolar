@@ -28,11 +28,10 @@ import axios from 'axios';
 //  import { withFormik } from 'formik';
 //  import * as Yup from 'yup';
 import NavBar from '../../components/NavBar/index';
-import ProductsBar from '../../components/ProductsBar/index';
-import ProductItem from '../../components/ProductItem/index';
 import Footer from '../../components/Footer/index';
+import CatalogueCard from '../../components/CatalogueCard/index';
 
-//  import GoogleMapsContainer from '../../components/GoogleMapsContainer/index';
+//  import YandexMapsContainer from '../../components/YandexMapsContainer/index';
 //  import CouponHistory from '../../components/CouponHistory';
 //  import GoodHistory from '../../components/GoodHistory';
 // import messages from './messages';
@@ -49,8 +48,12 @@ const BackGround = styled.div`
   z-index: 1;
   display: flex;
   width: 100%;
+  font-family: 'Century Gothic';
+  font-size: 27px;
   flex-direction: column;
-
+  & > :nth-last-child(2) {
+    margin-bottom: 40px;
+  }
   background-color: #fcfcfc; /* The image used */
 `;
 
@@ -67,32 +70,19 @@ const StyledFooter = styled.div`
   align-self: flex-end;
 `;
 
-const InfoWrapper = styled.div`
-  max-width: 80%;
+/* const BottomPhotos = styled.div`
+  width: 100%;
   display: flex;
-
-  font-family: 'Century Gothic';
-  font-size: 19px;
-  text-decoration: none;
-  color: black;
+  flex-direction: row;
 
   justify-content: space-between;
   flex-wrap: wrap;
-  align-content: flex-start;
-  margin-top: 195px;
-  margin-right: -30px;
-  margin-left: -30px;
 
-  & > div {
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-bottom: 50px;
-  }
-`;
-
+  margin-top: 8vh;
+`; */
 /* eslint-disable react/prefer-stateless-function */
 /* eslint-disable quotes */
-export class Products extends React.Component {
+export class MoreInfoPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -106,12 +96,13 @@ export class Products extends React.Component {
       )
       .then(res => {
         this.setState({
-          posts: res.data.posts.filter(post => post.categories.products),
+          posts: res.data.posts.filter(post => post.categories.catalogues),
         });
         console.log(this.state.posts);
       })
       .catch(error => console.log(error));
   }
+
   render() {
     function removeUnicode(props) {
       return props.replace(/&nbsp;/g, '');
@@ -120,29 +111,25 @@ export class Products extends React.Component {
       <CouponInfoWrapper>
         <StyledBar>
           <NavBar />
-          <ProductsBar />
         </StyledBar>
         <BackGround>
           <div
             style={{
-              width: '100%',
               height: '100%',
               minHeight: '100vh',
+              flexDirection: 'column',
               display: 'flex',
-              justifyContent: 'center',
-              maxWidth: '1440px',
             }}
           >
-            <InfoWrapper>
+            <div style={{ paddingTop: '105px', margin: '-40px 0px' }}>
               {this.state.posts.map(post => (
-                <ProductItem
-                  background={post.featured_image}
+                <CatalogueCard
                   title={removeUnicode(post.title)}
-                  description={removeUnicode(post.excerpt)}
-                  to={`/products/${post.ID}`}
+                  description={removeUnicode(post.content)}
+                  image={post.featured_image}
                 />
               ))}
-            </InfoWrapper>
+            </div>
           </div>
           <StyledFooter>
             <Footer />
@@ -153,4 +140,4 @@ export class Products extends React.Component {
   }
 }
 
-export default Products;
+export default MoreInfoPage;

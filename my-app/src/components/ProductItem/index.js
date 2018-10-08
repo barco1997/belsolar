@@ -3,7 +3,7 @@ import React from 'react';
 
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-
+import LinkButton from '../LinkButton/index';
 const ProductItemWrapper = styled.div`
   width: 320px;
   height: 220px;
@@ -24,6 +24,7 @@ const Overlay = styled.div`
   display: flex;
   flex-direction: column;
   font-family: 'Century Gothic';
+  font-size: 12px;
   opacity: 0;
   &:hover {
     opacity: 1;
@@ -33,14 +34,24 @@ const Overlay = styled.div`
 
 const Header = styled.div`
   font-size: 25px;
-  margin-left: 30px;
+  margin-left: 25px;
   margin-top: 20px;
 `;
 
 const Description = styled.div`
-  font-size: 12px;
-  margin-left: 30px;
-  margin-top: 7px;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 1px;
+  & > p {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    min-height: 90px;
+    max-height: 100px;
+  }
 `;
 
 /* eslint-disable react/prefer-stateless-function */
@@ -61,12 +72,19 @@ export class ProductItem extends React.Component {
     return (
       <ProductItemWrapper background={this.props.background}>
         <Overlay>
-          <Header>Новость</Header>
-          <Description>
-            Иррациональное в творчестве относительно. Эзотерическое имитирует
-            символический метафоризм, таким образом, второй комплекс движущих
-            сил получил разработку в трудах А.Берталанфи и Ш.Бюлера.
-          </Description>
+          <Header dangerouslySetInnerHTML={{ __html: this.props.title }} />
+          <Description
+            dangerouslySetInnerHTML={{ __html: this.props.description }}
+          />
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginTop: '5px',
+            }}
+          >
+            <LinkButton to={this.props.to}>Далее</LinkButton>
+          </div>
         </Overlay>
       </ProductItemWrapper>
     );

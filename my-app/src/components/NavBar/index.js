@@ -151,7 +151,7 @@ export class NavBar extends React.Component {
   };
   //getId() {
   // const currentLocation = this.props.location.pathname.slice(14);
-  // return currentLocation;
+  // return currentLocation; <NavMenuItem to="/main">О&nbsp;компании</NavMenuItem>
   //}
   render() {
     const isOpen = this.state.openLeft;
@@ -159,9 +159,10 @@ export class NavBar extends React.Component {
       <NavBarWrapper color={this.props.color}>
         <Logo to="/main">ПОЗИТАНО</Logo>
         <Menu>
-          <NavMenuItem to="/main">О&nbsp;компании</NavMenuItem>
+          <NavMenuItem to="/catalogue">Каталоги</NavMenuItem>
           <NavMenuItem to="/products">Продукция</NavMenuItem>
           <NavMenuItem to="/contacts">Контакты</NavMenuItem>
+
           <Burger
             open={isOpen}
             onClick={() => this.setState({ openLeft: !isOpen })}
@@ -183,14 +184,17 @@ export class NavBar extends React.Component {
             <div style={{ width: '100%' }}>
               <div style={{ padding: '2em' }}>
                 <MenuWrapper>
-                  <MenuItem to="/main" activeClassName="selected">
-                    О компании
+                  <MenuItem to="/catalogue" activeClassName="selected">
+                    Каталоги
                   </MenuItem>
                   <MenuItem to="/products" activeClassName="selected">
                     Продукция
                   </MenuItem>
                   <MenuItem to="/contacts" activeClassName="selected">
                     Контакты
+                  </MenuItem>
+                  <MenuItem to="/main" activeClassName="selected">
+                    О компании
                   </MenuItem>
                 </MenuWrapper>
               </div>
