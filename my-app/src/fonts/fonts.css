@@ -1,6 +1,33 @@
 @font-face {
   font-family: 'Century Gothic';
-  src: url('CenturyGothic.ttf') format('ttf');
+  src: url('Montserrat-Regular.ttf') format('ttf');
   font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('Montserrat-Regular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('Montserrat-SemiBold.ttf') format('ttf');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('Montserrat-Medium.ttf') format('ttf');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('Montserrat-Bold.ttf') format('ttf');
+  font-weight: 700;
   font-style: normal;
 }

@@ -19,13 +19,15 @@ const Button = styled(Link)`
   outline: 0;
   background: ${props => (props.color ? props.color : 'black')};
   color: white;
-  max-width: 80px;
+  max-width: 180px;
   width: 100%;
-  height: 30px;
+  height: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: background 300ms ease-in-out;
+  font-size: 17px;
+  font-weight: 700;
   &:hover {
     background: rgba(0, 0, 0, 0.61);
   }

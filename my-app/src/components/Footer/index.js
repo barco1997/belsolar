@@ -29,32 +29,52 @@ import styled from 'styled-components';
 
 const FooterWrapper = styled.div`
   width: 100%;
-  height: 120px;
+  letter-spacing: 0.75px;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  color: #717171;
+  font-family: 'Montserran';
+  font-weight: 500;
+`;
+
+const UpperFooter = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0px -30px;
+  font-size: 16px;
+
+  background: black;
+  min-height: 210px;
+  padding-bottom: 15px;
+`;
+
+const LowerFooter = styled.div`
+  width: 100%;
+  height: 80px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  font-size: 13px;
+  background: #151515;
   align-items: center;
-  background: #545454;
-  font-family: 'Century Gothic';
-  padding: 0px 5px;
-  & > * {
-    margin: 0px 5px;
+  & > p {
+    width: 77%;
   }
 `;
 
-const Address = styled.div`
-  font-size: 15px;
-  color: #d7d4d4;
-`;
-
-const Copyrights = styled.div`
-  text-decoration: none;
-  color: #d7d4d4;
-  font-size: 12px;
-`;
-
-const Credit = styled.a`
-  text-decoration: none;
-  color: #d7d4d4;
+const FooterColumn = styled.div`
+  margin: 0px 30px;
+  display: flex;
+  flex-direction: column;
+  & > div {
+    margin-bottom: 4px;
+  }
+  & > :nth-child(1) {
+    margin-top: 50px;
+    color: white;
+    line-height: 0.8;
+  }
 `;
 
 /* eslint-disable react/prefer-stateless-function */
@@ -74,18 +94,41 @@ export class Footer extends React.Component {
   render() {
     return (
       <FooterWrapper>
-        <Address to="/">ул Гоголя 83, г. Брест</Address>
-        <Copyrights>
-          Copywrights Positano, Icon made by{' '}
-          <Credit
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.flaticon.com/authors/freepik"
+        <UpperFooter>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'flex-start',
+
+              width: '77%',
+            }}
           >
-            Freepik
-          </Credit>{' '}
-          from www.flaticon.com
-        </Copyrights>
+            <FooterColumn>
+              <p>Продукты</p>
+              <div>Широкоформат</div>
+              <div>Наружка</div>
+              <div>Полиграфия</div>
+              <div>Дизайн</div>
+            </FooterColumn>
+            <FooterColumn>
+              <p>Услуги</p>
+              <div>Широкоформат</div>
+              <div>Наружка</div>
+              <div>Полиграфия</div>
+              <div>Дизайн</div>
+            </FooterColumn>
+            <FooterColumn>
+              <p>Контакты</p>
+              <div>Куйбышева 9, каб. 310</div>
+              <div>+375 (29) 622-41-41</div>
+              <div>belsolar@gmail.com</div>
+            </FooterColumn>
+          </div>
+        </UpperFooter>
+        <LowerFooter>
+          <p>© 2018 BELSOLAR. ВСЕ ПРАВА ЗАЩИЩЕНЫ</p>
+        </LowerFooter>
       </FooterWrapper>
     );
   }

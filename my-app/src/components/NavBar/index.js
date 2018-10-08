@@ -13,6 +13,7 @@ import Drawer from 'react-motion-drawer';
 import { media } from '../../utils/media';
 import MenuWrapper from '../MenuWrapper/index';
 import MenuItem from '../MenuItem/index';
+import logo from './logo.png';
 //  import SendButton from 'components/SendButton';
 //  import EyelandTagBlock from 'components/EyelandTagBlock';
 //  import SocialTagBlock from 'components/SocialTagBlock';
@@ -40,8 +41,8 @@ const Burger = styled.div`
   margin: 0;
   padding: 0;
 
-  display: block;
-
+  display: none;
+  ${media.desktop`display: block;`};
   width: 20px;
   height: 20px;
   position: relative;
@@ -105,26 +106,71 @@ const NavBarWrapper = styled.div`
   width: 100%;
   height: 70px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  background: ${props => (props.color ? props.color : 'white')};
+  background: ${props => (props.color ? props.color : 'black')};
+`;
 
-  font-family: 'Century Gothic';
-  border-style: ${props => (props.color ? 'none' : 'solid')};
-  border-width: 0px 0px 1px 0px;
-  border-color: #eee7e1;
+const AdditionalWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  color: white;
+  font-family: 'Montserrat';
+  font-weight: medium;
+  font-size: 13px;
+`;
+
+const LanguageToggle = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-weight: normal;
+  ${media.desktop`display: none;`};
+
+  & > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+  }
+`;
+const Ru = styled.div`
+  color: white;
+  background: #2346ff;
+`;
+
+const En = styled.div`
+  color: #949494;
+  background: #2b2b2b;
+`;
+
+const Number = styled.div`
+  width: 250px;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  font-weight: normal;
+  align-items: center;
+  background: #2346ff;
+  padding-left: 30px;
+  ${media.desktop`display: none;`};
 `;
 
 const Logo = styled(Link)`
-  font-size: 20px;
   text-decoration: none;
-  color: black;
+  color: white;
+  height: 33px;
+  margin-bottom: -2px;
+  margin-left: -30px;
 `;
 
 const Menu = styled.div`
   display: flex;
   justify-content: flex-start;
-  font-size: 15px;
+
   margin: 0px -15px;
   & > * {
     margin: 0px 15px;
@@ -132,8 +178,9 @@ const Menu = styled.div`
 `;
 
 const NavMenuItem = styled(Link)`
+  padding: 7px 0px;
   text-decoration: none;
-  color: black;
+  color: #949494;
   ${media.desktop`display: none;`};
 `;
 
@@ -156,52 +203,66 @@ export class NavBar extends React.Component {
   render() {
     const isOpen = this.state.openLeft;
     return (
-      <NavBarWrapper color={this.props.color}>
-        <Logo to="/main">ПОЗИТАНО</Logo>
-        <Menu>
-          <NavMenuItem to="/catalogue">Каталоги</NavMenuItem>
-          <NavMenuItem to="/products">Продукция</NavMenuItem>
-          <NavMenuItem to="/contacts">Контакты</NavMenuItem>
+      <AdditionalWrapper>
+        <NavBarWrapper color={this.props.color}>
+          <div style={{ flex: '1', display: 'flex', justifyContent: 'center' }}>
+            <Logo to="/main">
+              <img style={{ height: '30px' }} src={logo} alt="lol" />
+            </Logo>
+          </div>
+          <div style={{ marginRight: '30px' }}>
+            <Menu>
+              <NavMenuItem to="/main">ГЛАВНАЯ</NavMenuItem>
 
-          <Burger
-            open={isOpen}
-            onClick={() => this.setState({ openLeft: !isOpen })}
-          >
-            <span />
-            <span />
-            <span />
-            <span />
-          </Burger>
-          <StyledDrawer
-            right={true}
-            width={300}
-            fadeOut
-            open={isOpen}
-            onChange={open => this.setState({ openLeft: open })}
-            noTouchOpen={false}
-            noTouchClose={false}
-          >
-            <div style={{ width: '100%' }}>
-              <div style={{ padding: '2em' }}>
-                <MenuWrapper>
-                  <MenuItem to="/catalogue" activeClassName="selected">
-                    Каталоги
-                  </MenuItem>
-                  <MenuItem to="/products" activeClassName="selected">
-                    Продукция
-                  </MenuItem>
-                  <MenuItem to="/contacts" activeClassName="selected">
-                    Контакты
-                  </MenuItem>
-                  <MenuItem to="/main" activeClassName="selected">
-                    О компании
-                  </MenuItem>
-                </MenuWrapper>
-              </div>
-            </div>
-          </StyledDrawer>
-        </Menu>
-      </NavBarWrapper>
+              <NavMenuItem to="/products">ПРОДУКТЫ</NavMenuItem>
+              <NavMenuItem to="/catalogue">УСЛУГИ</NavMenuItem>
+              <NavMenuItem to="/contacts">О&nbsp;КОМПАНИИ</NavMenuItem>
+
+              <NavMenuItem to="/products">ПАРТНЕРЫ</NavMenuItem>
+              <NavMenuItem to="/contacts">КОНТАКТЫ</NavMenuItem>
+              <LanguageToggle>
+                <En>En</En>
+                <Ru>Ru</Ru>
+              </LanguageToggle>
+
+              <Burger
+                open={isOpen}
+                onClick={() => this.setState({ openLeft: !isOpen })}
+              >
+                <span />
+                <span />
+                <span />
+                <span />
+              </Burger>
+              <StyledDrawer
+                right={true}
+                width={300}
+                fadeOut
+                open={isOpen}
+                onChange={open => this.setState({ openLeft: open })}
+                noTouchOpen={false}
+                noTouchClose={false}
+              >
+                <div style={{ width: '100%' }}>
+                  <div style={{ padding: '2em' }}>
+                    <MenuWrapper>
+                      <MenuItem to="/main">ГЛАВНАЯ</MenuItem>
+
+                      <MenuItem to="/products">ПРОДУКТЫ</MenuItem>
+                      <MenuItem to="/catalogue">УСЛУГИ</MenuItem>
+                      <MenuItem to="/contacts">О&nbsp;КОМПАНИИ</MenuItem>
+
+                      <MenuItem to="/products">ПАРТНЕРЫ</MenuItem>
+                      <MenuItem to="/contacts">КОНТАКТЫ</MenuItem>
+                    </MenuWrapper>
+                  </div>
+                </div>
+              </StyledDrawer>
+            </Menu>
+          </div>
+        </NavBarWrapper>
+        <Number>+375 (29) 622-41-41</Number>
+      </AdditionalWrapper>
     );
   }
 }
