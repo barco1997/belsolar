@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 
 const sizes = {
-  desktop: 992,
+  desktop: 1024,
   tablet: 768,
   phone: 376,
 };

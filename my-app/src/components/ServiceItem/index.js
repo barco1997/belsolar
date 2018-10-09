@@ -3,10 +3,10 @@ import React from 'react';
 
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-import LinkButton from './button';
+
 import ph1 from './ph1.png';
 const ProductItemWrapper = styled.div`
-  width: 240px;
+  width: 320px;
   height: 220px;
   display: flex;
   flex-direction: column;
@@ -23,16 +23,23 @@ const ProductItemWrapper = styled.div`
 const Overlay = styled.div`
   width: 100%;
   height: 100%;
-
+  background: rgba(48, 48, 48, 0.85);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  font-family: 'Century Gothic';
-  font-size: 12px;
+  justify-content: center;
+  font-family: 'Montserran';
+  font-weight: normal;
+  font-size: 20px;
+  color: white;
+  opacity: 0;
+  &:hover {
+    opacity: 1;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 /* eslint-disable react/prefer-stateless-function */
-export class ProductItem extends React.Component {
+export class ServiceItem extends React.Component {
   //  constructor(props, context) {
   //  super(props, context);
   //    this.state = {
@@ -58,9 +65,7 @@ export class ProductItem extends React.Component {
               marginTop: '5px',
             }}
           >
-            <LinkButton background="#2346ff" to={this.props.to}>
-              {this.props.title}
-            </LinkButton>
+            {this.props.title}
           </div>
         </Overlay>
       </ProductItemWrapper>
@@ -68,4 +73,4 @@ export class ProductItem extends React.Component {
   }
 }
 
-export default ProductItem;
+export default ServiceItem;

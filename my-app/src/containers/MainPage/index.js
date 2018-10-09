@@ -34,6 +34,8 @@ import Footer from '../../components/Footer/index';
 //  import GoodHistory from '../../components/GoodHistory';
 // import messages from './messages';
 import background from './main.png';
+import { ProductsFrame } from '../../components/ProductsFrame';
+import { ServicesFrame } from '../../components/ServicesFrame';
 
 const CouponInfoWrapper = styled.div`
   width: 100%;
@@ -103,7 +105,7 @@ const Header = styled.div`
   font-size: 40px;
   
   `};
-  font-size: 55px;
+  font-size: 49px;
   font-weight: 700;
 `;
 
@@ -161,12 +163,14 @@ export class MainPage extends React.Component {
                   marginTop: '5px',
                 }}
               >
-                <LinkButton color="#2346ff" to="/main">
+                <LinkButton background="#2346ff" to="/main">
                   Связаться
                 </LinkButton>
               </div>
             </MainWrapper>
           </Image>
+          <ProductsFrame />
+          <ServicesFrame />
           <StyledFooter>
             <Footer />
           </StyledFooter>

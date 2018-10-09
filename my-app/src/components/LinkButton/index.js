@@ -17,8 +17,8 @@ const Button = styled(Link)`
   user-select: none;
   cursor: pointer;
   outline: 0;
-  background: ${props => (props.color ? props.color : 'black')};
-  color: white;
+  background: ${props => (props.background ? props.background : 'black')};
+  color: ${props => (props.color ? props.color : 'white')};
   max-width: 180px;
   width: 100%;
   height: 45px;
@@ -28,16 +28,17 @@ const Button = styled(Link)`
   transition: background 300ms ease-in-out;
   font-size: 17px;
   font-weight: 700;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
   &:hover {
-    background: rgba(0, 0, 0, 0.61);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   }
   & > * {
     margin-top: -4px;
   }
 `;
 
-const LinkButton = ({ children, color, to }) => (
-  <Button to={to} color={color}>
+const LinkButton = ({ children, color, to, background }) => (
+  <Button to={to} color={color} background={background}>
     {children}
   </Button>
 );
