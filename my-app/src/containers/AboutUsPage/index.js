@@ -28,16 +28,16 @@ import styled from 'styled-components';
 //  import { withFormik } from 'formik';
 //  import * as Yup from 'yup';
 import NavBar from '../../components/NavBar/index';
-import LinkButton from '../../components/LinkButton/index';
+//  import LinkButton from '../../components/LinkButton/index';
 import Footer from '../../components/Footer/index';
 //  import CouponHistory from '../../components/CouponHistory';
 //  import GoodHistory from '../../components/GoodHistory';
 // import messages from './messages';
 import background from './main.png';
-import { ProductsFrame } from '../../components/ProductsFrame';
-import { ServicesFrame } from '../../components/ServicesFrame';
-import { ContactFrame } from '../../components/ContactFrame';
-import { CollaborationFrame } from '../../components/CollaborationFrame';
+import photo1 from './photo1.png';
+
+import { UsCard } from '../../components/UsCard';
+import { TeamFrame } from '../../components/TeamFrame';
 
 const CouponInfoWrapper = styled.div`
   width: 100%;
@@ -55,7 +55,7 @@ const BackGround = styled.div`
 `;
 const Image = styled.div`
   background-image: url(${props => props.back}); /* The image used */
-
+  background-position: center top;
   background-repeat: no-repeat; /* Do not repeat the image background-position: center;*/
   background-size: cover;
   display: flex;
@@ -63,6 +63,7 @@ const Image = styled.div`
   justify-content: flex-end;
   height: 100%;
   min-height: 100vh;
+
   /* The image used */
 `;
 
@@ -80,53 +81,18 @@ const StyledFooter = styled.div`
 `;
 
 const MainWrapper = styled.div`
-  margin-bottom: 200px;
   ${media.desktop`
-  margin-bottom: 12vh;
-  margin-left: 7vw;
-  margin-right: 7vw;
   font-size: 15px;
   `};
-  margin-left: 12vw;
-  margin-right: 12vw;
-  max-width: 720px;
 
-  display: flex;
-  flex-direction: column;
-
-  display: flex;
-  color: white;
-  flex-direction: column;
-  font-family: 'Montserrat';
-  font-size: 17px;
-  font-weight: normal;
-`;
-
-const Header = styled.div`
-  ${media.desktop`
-  font-size: 40px;
-  
-  `};
-  font-size: 49px;
-  font-weight: 700;
-`;
-
-const Description = styled.div`
-  margin-top: 1px;
-  & > p {
-    display: -webkit-box;
-    -webkit-line-clamp: 6;
-    -webkit-box-orient: vertical;
-
-    text-overflow: ellipsis;
-    overflow: hidden;
-
-    max-height: 130px;
+  color: black;
+  & > * {
+    margin-top: 30px;
   }
 `;
 
 /* eslint-disable react/prefer-stateless-function */
-export class MainPage extends React.Component {
+export class AboutUsPage extends React.Component {
   //  constructor(props, context) {
   //  super(props, context);
   //    this.state = {
@@ -148,33 +114,20 @@ export class MainPage extends React.Component {
         <BackGround>
           <Image back={background}>
             <MainWrapper>
-              <Header>Чем мы занимаемся?</Header>
-              <Description>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-              </Description>
-              <div
-                style={{
-                  display: 'flex',
-
-                  marginRight: '10px',
-                  marginTop: '5px',
-                }}
-              >
-                <LinkButton background="#2346ff" to="/main">
-                  Связаться
-                </LinkButton>
-              </div>
+              <UsCard
+                img={photo1}
+                title="Кто мы?"
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+              />
             </MainWrapper>
           </Image>
-          <ProductsFrame />
-          <ServicesFrame />
-          <ContactFrame />
-          <CollaborationFrame />
+          <UsCard
+            right
+            img={photo1}
+            title="Чем мы занимаемся?"
+            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+          />
+          <TeamFrame header />
           <StyledFooter>
             <Footer />
           </StyledFooter>
@@ -184,4 +137,4 @@ export class MainPage extends React.Component {
   }
 }
 
-export default MainPage;
+export default AboutUsPage;

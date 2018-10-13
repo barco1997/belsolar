@@ -52,7 +52,7 @@ const MoreCapture = styled.div`
   ${media.desktop`
   justify-content: center;
   & > :nth-child(2) {
-    
+    margin-right: 15px;
     margin-top: 10px;
   }
   
@@ -64,7 +64,7 @@ const MoreCapture = styled.div`
 
 const CatalogueCardWrapper = styled.div`
   flex-direction: column;
-  min-height: 750px;
+  min-height: 790px;
   display: flex;
   ${media.desktop`
   align-items: center;
@@ -82,11 +82,11 @@ const CatalogueCardWrapper = styled.div`
 
 const Header = styled.div`
   ${media.desktop`
-  font-size: 40px;
+  font-size: 32px;
   
   `};
 
-  font-size: 49px;
+  font-size: 40px;
   font-weight: 700;
   margin-top: 150px;
 `;

@@ -6,13 +6,15 @@ import { Switch, Route, Redirect } from 'react-router';
  */
 //import App from './containers/App/index';
 import MainPage from './containers/MainPage/index';
-import Contacts from './containers/Contacts/index';
+import ContactsPage from './containers/ContactsPage/index';
 import Products from './containers/Products/index';
 import MoreInfoPage from './containers/MoreInfoPage/index';
 import CataloguePage from './containers/CataloguePage/index';
+import CollaborationPage from './containers/CollaborationPage/index';
 // import SomePage from './components/SomePage';
 // import SomeOtherPage from './components/SomeOtherPage';
 import styled from 'styled-components';
+import { AboutUsPage } from './containers/AboutUsPage';
 /**
  * All routes go here.
  * Don't forget to import the components above after adding new route.
@@ -33,9 +35,11 @@ export function Routes() {
         <Redirect from="/" exact to="/main" />
         <Route exact path="/main" component={MainPage} />
         <Route exact path="/products" component={Products} />
-        <Route exact path="/contacts" component={Contacts} />
+        <Route exact path="/contacts" component={ContactsPage} />
         <Route exact path="/products/:id" component={MoreInfoPage} />
         <Route exact path="/catalogue" component={CataloguePage} />
+        <Route exact path="/collaboration" component={CollaborationPage} />
+        <Route exact path="/aboutus" component={AboutUsPage} />
       </Switch>
     </AppWrapper>
   );

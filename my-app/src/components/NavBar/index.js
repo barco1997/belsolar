@@ -107,6 +107,7 @@ const NavBarWrapper = styled.div`
   height: 70px;
   display: flex;
   justify-content: space-between;
+
   align-items: center;
   background: ${props => (props.color ? props.color : 'black')};
 `;
@@ -115,7 +116,9 @@ const AdditionalWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: flex-start;
+  max-width: 1920px;
+  margin: 0 auto;
+
   color: white;
   font-family: 'Montserrat';
   font-weight: medium;
@@ -216,9 +219,9 @@ export class NavBar extends React.Component {
 
               <NavMenuItem to="/products">ПРОДУКТЫ</NavMenuItem>
               <NavMenuItem to="/catalogue">УСЛУГИ</NavMenuItem>
-              <NavMenuItem to="/contacts">О&nbsp;КОМПАНИИ</NavMenuItem>
+              <NavMenuItem to="/aboutus">О&nbsp;КОМПАНИИ</NavMenuItem>
 
-              <NavMenuItem to="/products">ПАРТНЕРЫ</NavMenuItem>
+              <NavMenuItem to="/collaboration">ПАРТНЕРЫ</NavMenuItem>
               <NavMenuItem to="/contacts">КОНТАКТЫ</NavMenuItem>
               <LanguageToggle>
                 <En>En</En>
@@ -250,9 +253,9 @@ export class NavBar extends React.Component {
 
                       <MenuItem to="/products">ПРОДУКТЫ</MenuItem>
                       <MenuItem to="/catalogue">УСЛУГИ</MenuItem>
-                      <MenuItem to="/contacts">О&nbsp;КОМПАНИИ</MenuItem>
+                      <MenuItem to="/aboutus">О&nbsp;КОМПАНИИ</MenuItem>
 
-                      <MenuItem to="/products">ПАРТНЕРЫ</MenuItem>
+                      <MenuItem to="/collaboration">ПАРТНЕРЫ</MenuItem>
                       <MenuItem to="/contacts">КОНТАКТЫ</MenuItem>
                     </MenuWrapper>
                   </div>
