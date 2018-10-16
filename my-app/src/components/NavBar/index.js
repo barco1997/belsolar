@@ -218,7 +218,7 @@ export class NavBar extends React.Component {
               <NavMenuItem to="/main">ГЛАВНАЯ</NavMenuItem>
 
               <NavMenuItem to="/products">ПРОДУКТЫ</NavMenuItem>
-              <NavMenuItem to="/catalogue">УСЛУГИ</NavMenuItem>
+              <NavMenuItem to="/services">УСЛУГИ</NavMenuItem>
               <NavMenuItem to="/aboutus">О&nbsp;КОМПАНИИ</NavMenuItem>
 
               <NavMenuItem to="/collaboration">ПАРТНЕРЫ</NavMenuItem>
@@ -252,7 +252,7 @@ export class NavBar extends React.Component {
                       <MenuItem to="/main">ГЛАВНАЯ</MenuItem>
 
                       <MenuItem to="/products">ПРОДУКТЫ</MenuItem>
-                      <MenuItem to="/catalogue">УСЛУГИ</MenuItem>
+                      <MenuItem to="/services">УСЛУГИ</MenuItem>
                       <MenuItem to="/aboutus">О&nbsp;КОМПАНИИ</MenuItem>
 
                       <MenuItem to="/collaboration">ПАРТНЕРЫ</MenuItem>

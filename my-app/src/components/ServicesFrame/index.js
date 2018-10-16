@@ -89,6 +89,9 @@ const Header = styled.div`
   font-size: 40px;
   font-weight: 700;
   margin-top: 150px;
+  ${media.phone`
+  margin-top: 35px;
+  `};
 `;
 
 export class ServicesFrame extends React.Component {

@@ -25,7 +25,7 @@ const CatalogueCardWrapper = styled.div`
 
 const Header = styled.div`
   ${media.desktop`
-  font-size: 32px;
+  font-size: 28px;
   text-align: center;
   
   `};
@@ -54,15 +54,15 @@ const Imagine = styled.div`
 
 const Image = styled.img`
   ${media.desktop`
-  height: 195px;
+  height: 170px;
   width: 320px;
   
   `};
-  height: 340px;
+  height: 300px;
   width: 565px;
   object-fit: cover;
   margin-top: 40px;
-  margin-bottom: ${props => (props.right ? '50px' : '20px')};
+  margin-bottom: 20px;
 `;
 
 const ContactWrap = styled.div`
@@ -90,7 +90,7 @@ const ContactWrap = styled.div`
 
 const LittleText = styled.div`
   ${media.desktop`
-  font-size: 15px;
+  font-size: 12px;
   text-align: center;
   `};
 
@@ -100,7 +100,7 @@ const LittleText = styled.div`
   max-width: 480px;
 `;
 
-export class UsCard extends React.Component {
+export class ServiceCard extends React.Component {
   //  constructor(props, context) {
   //  super(props, context);
   //    this.state = {
@@ -126,7 +126,7 @@ export class UsCard extends React.Component {
         )}
 
         <Imagine right={this.props.right}>
-          <Image src={this.props.img} alt="ahahah" right={this.props.right} />
+          <Image src={this.props.img} alt="ahahah" />
         </Imagine>
         {!this.props.right && (
           <ContactWrap>
@@ -141,4 +141,4 @@ export class UsCard extends React.Component {
   }
 }
 
-export default UsCard;
+export default ServiceCard;

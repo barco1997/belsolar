@@ -62,6 +62,12 @@ const Image = styled.div`
   height: 100%;
   min-height: 100vh;
 
+  ${media.phone`
+  
+  
+  background: white;
+  `};
+
   /* The image used */
 `;
 

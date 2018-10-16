@@ -7,7 +7,7 @@ import { Switch, Route, Redirect } from 'react-router';
 //import App from './containers/App/index';
 import MainPage from './containers/MainPage/index';
 import ContactsPage from './containers/ContactsPage/index';
-import Products from './containers/Products/index';
+import ProductsPage from './containers/ProductsPage/index';
 import MoreInfoPage from './containers/MoreInfoPage/index';
 import CataloguePage from './containers/CataloguePage/index';
 import CollaborationPage from './containers/CollaborationPage/index';
@@ -15,6 +15,7 @@ import CollaborationPage from './containers/CollaborationPage/index';
 // import SomeOtherPage from './components/SomeOtherPage';
 import styled from 'styled-components';
 import { AboutUsPage } from './containers/AboutUsPage';
+import { ServicesPage } from './containers/ServicesPage';
 /**
  * All routes go here.
  * Don't forget to import the components above after adding new route.
@@ -34,12 +35,13 @@ export function Routes() {
       <Switch>
         <Redirect from="/" exact to="/main" />
         <Route exact path="/main" component={MainPage} />
-        <Route exact path="/products" component={Products} />
+        <Route exact path="/products" component={ProductsPage} />
         <Route exact path="/contacts" component={ContactsPage} />
         <Route exact path="/products/:id" component={MoreInfoPage} />
         <Route exact path="/catalogue" component={CataloguePage} />
         <Route exact path="/collaboration" component={CollaborationPage} />
         <Route exact path="/aboutus" component={AboutUsPage} />
+        <Route exact path="/services" component={ServicesPage} />
       </Switch>
     </AppWrapper>
   );

@@ -25,16 +25,18 @@ const LowRow = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 0px -15px;
-  margin-top: 35px;
+  margin-top: 30px;
   ${media.desktop`
   justify-content: center;
   `};
+
   & > div {
     margin: 15px 15px;
   }
   & > div:nth-last-child(1) {
-    margin-top: 35px;
+    margin-top: ${props => (props.main ? '35px' : '15px')};
   }
+  margin-bottom: 30px;
 `;
 
 const MoreCapture = styled.div`
@@ -88,6 +90,9 @@ const Header = styled.div`
   font-size: 40px;
   font-weight: 700;
   margin-top: 150px;
+  ${media.phone`
+  margin-top: 35px;
+  `};
 `;
 
 export class ProductsFrame extends React.Component {
@@ -117,17 +122,47 @@ export class ProductsFrame extends React.Component {
           </p>
         </Description>
 
-        <LowRow>
+        <LowRow main={this.props.main}>
           <ProductItem title="Системы отопления" description="wow" to="/main" />
           <ProductItem title="Системы отопления" description="wow" to="/main" />
           <ProductItem title="Системы отопления" description="wow" to="/main" />
           <ProductItem title="Системы отопления" description="wow" to="/main" />
-          <MoreCapture>
-            <div>Lorem ipsum dolor sit amet, conse ctetur ></div>
-            <LinkButton background="white" color="#2346ff" to="/main">
-              Смотреть все
-            </LinkButton>
-          </MoreCapture>
+          {!this.props.main && (
+            <ProductItem
+              title="Системы отопления"
+              description="wow"
+              to="/main"
+            />
+          )}
+          {!this.props.main && (
+            <ProductItem
+              title="Системы отопления"
+              description="wow"
+              to="/main"
+            />
+          )}
+          {!this.props.main && (
+            <ProductItem
+              title="Системы отопления"
+              description="wow"
+              to="/main"
+            />
+          )}
+          {!this.props.main && (
+            <ProductItem
+              title="Системы отопления"
+              description="wow"
+              to="/main"
+            />
+          )}
+          {this.props.main && (
+            <MoreCapture>
+              <div>Lorem ipsum dolor sit amet, conse ctetur ></div>
+              <LinkButton background="white" color="#2346ff" to="/main">
+                Смотреть все
+              </LinkButton>
+            </MoreCapture>
+          )}
         </LowRow>
       </CatalogueCardWrapper>
     );

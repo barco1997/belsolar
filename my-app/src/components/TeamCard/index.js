@@ -18,6 +18,7 @@ const Overlay = styled.div`
 const Picture = styled.img`
   height: 130px;
   width: 130px;
+  object-fit: cover;
   border-radius: 50%;
 `;
 

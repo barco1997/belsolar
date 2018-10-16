@@ -35,6 +35,7 @@ import Footer from '../../components/Footer/index';
 // import messages from './messages';
 import background from './main.png';
 import photo1 from './photo1.png';
+import photo2 from './photo2.png';
 
 import { UsCard } from '../../components/UsCard';
 import { TeamFrame } from '../../components/TeamFrame';
@@ -63,6 +64,11 @@ const Image = styled.div`
   justify-content: flex-end;
   height: 100%;
   min-height: 100vh;
+  ${media.phone`
+  
+  
+  background: #f4f4f4;
+  `};
 
   /* The image used */
 `;
@@ -123,7 +129,7 @@ export class AboutUsPage extends React.Component {
           </Image>
           <UsCard
             right
-            img={photo1}
+            img={photo2}
             title="Чем мы занимаемся?"
             text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
           />

@@ -19,7 +19,8 @@ const CatCardWrapper = styled.div`
     margin: 20px 20px;
   }
   ${media.desktop`
-  align-items: center;
+  
+  justify-content: center;
   padding-left: 7vw;
   padding-right: 7vw;
   
