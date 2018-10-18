@@ -4,7 +4,7 @@ import React from 'react';
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { media } from '../../utils/media';
-
+import axios from 'axios';
 import ServiceItem from '../ServiceItem/index';
 import LinkButton from '../LinkButton/index';
 const Description = styled.div`
@@ -95,17 +95,25 @@ const Header = styled.div`
 `;
 
 export class ServicesFrame extends React.Component {
-  //  constructor(props, context) {
-  //  super(props, context);
-  //    this.state = {
-  //    id: this.getId(),
-  //  };
-  //  this.getId = this.getId.bind(this);
-  //}
-
-  //getId() {
-  // const currentLocation = this.props.location.pathname.slice(14);
-  // return currentLocation;
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: [],
+    };
+  }
+  componentDidMount() {
+    axios
+      .get(
+        'http://u2289.blue.elastictech.org/wp-json/wp/v2/services-api?_embed',
+      )
+      .then(res => {
+        this.setState({
+          posts: res.data.slice(0, 3),
+        });
+        console.log(this.state.posts);
+      })
+      .catch(error => console.log(error));
+  }
   //}
   render() {
     return (
@@ -122,13 +130,18 @@ export class ServicesFrame extends React.Component {
         </Description>
 
         <LowRow>
-          <ServiceItem title="Системы отопления" description="wow" to="/main" />
-          <ServiceItem title="Системы отопления" description="wow" to="/main" />
-          <ServiceItem title="Системы отопления" description="wow" to="/main" />
-
+          {this.state.posts.map(post => (
+            <ServiceItem
+              title={post.title.rendered}
+              description="wow"
+              to="/main"
+              key={post.id}
+              background={post._embedded['wp:featuredmedia'][0].source_url}
+            />
+          ))}
           <MoreCapture>
             <div>Lorem ipsum dolor sit amet, conse ctetur > </div>
-            <LinkButton background="white" color="#2346ff" to="/main">
+            <LinkButton background="white" color="#2346ff" to="/services">
               Смотреть все
             </LinkButton>
           </MoreCapture>

@@ -1,6 +1,6 @@
 /**
  *
- * CreateEyelandPage
+ *
  *
  */
 
@@ -9,24 +9,8 @@ import React from 'react';
 import { media } from '../../utils/media';
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-//  import axios from 'axios';
-//  import SendButton from 'components/SendButton';
-//  import EyelandTagBlock from 'components/EyelandTagBlock';
-//  import SocialTagBlock from 'components/SocialTagBlock';
-//  import TagInputField from 'components/TagInputField';
-//  import AttachIconButton from 'components/AttachIconButton';
-//  import SocialInput from 'components/SocialInput';
-//  import PlaceMap from 'containers/PlaceMap';
-//  import {
-//    withStyles,
-//    MuiThemeProvider,
-//    createMuiTheme,
-//  } from '@material-ui/core/styles';
-//  import TextField from '@material-ui/core/TextField';
-//  import Grid from '@material-ui/core/Grid';
-//  import ChipInput from 'material-ui-chip-input';
-//  import { withFormik } from 'formik';
-//  import * as Yup from 'yup';
+import axios from 'axios';
+
 import NavBar from '../../components/NavBar/index';
 //  import LinkButton from '../../components/LinkButton/index';
 import Footer from '../../components/Footer/index';
@@ -35,7 +19,8 @@ import Footer from '../../components/Footer/index';
 // import messages from './messages';
 import background from './main.png';
 
-import { ProductsFrame } from '../../components/ProductsFrame';
+import { ProducerFrame } from '../../components/ProducerFrame';
+//  import { ResourcesFrame } from '../../components/ResourcesFrame';
 
 const CouponInfoWrapper = styled.div`
   width: 100%;
@@ -62,7 +47,7 @@ const Image = styled.div`
   height: 100%;
   min-height: 100vh;
 
-  /* The image used */
+  /* this.props.match.params.id */
 `;
 
 const StyledBar = styled.div`
@@ -94,7 +79,48 @@ const MainWrapper = styled.div`
 `;
 
 /* eslint-disable react/prefer-stateless-function */
-export class ProductsPage extends React.Component {
+export class ContactsPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: null,
+      pdfs: null,
+
+      index: 0,
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get(
+        'http://u2289.blue.elastictech.org/wp-json/wp/v2/products-api/'.concat(
+          this.props.match.params.id,
+        ),
+      )
+      .then(res => {
+        let companies = [];
+        let resources = [];
+
+        const string = res.data.content.rendered;
+        const regex = /<li>(.*?)\n<ol>\n((?:.*\n)*?)<\/ol>\n<\/li>\n/g;
+        let match = regex.exec(string);
+        while (match) {
+          const productname = match[1];
+          const resource = match[2];
+          console.log('product -', productname);
+          console.log('List:', resource);
+          companies.push(productname);
+          resources.push(resource);
+          match = regex.exec(string);
+        }
+
+        this.setState({
+          posts: companies,
+          pdfs: resources,
+        });
+      })
+      .catch(error => console.log(error));
+  }
   render() {
     return (
       <CouponInfoWrapper>
@@ -104,7 +130,14 @@ export class ProductsPage extends React.Component {
         <BackGround>
           <Image back={background}>
             <MainWrapper>
-              <ProductsFrame />
+              <div>
+                {this.state.posts && (
+                  <ProducerFrame
+                    posts={this.state.posts}
+                    pdfs={this.state.pdfs}
+                  />
+                )}
+              </div>
             </MainWrapper>
           </Image>
 
@@ -117,4 +150,4 @@ export class ProductsPage extends React.Component {
   }
 }
 
-export default ProductsPage;
+export default ContactsPage;

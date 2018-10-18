@@ -8,8 +8,8 @@ import { Switch, Route, Redirect } from 'react-router';
 import MainPage from './containers/MainPage/index';
 import ContactsPage from './containers/ContactsPage/index';
 import ProductsPage from './containers/ProductsPage/index';
-import MoreInfoPage from './containers/MoreInfoPage/index';
-import CataloguePage from './containers/CataloguePage/index';
+import ParticularProductPage from './containers/ParticularProductPage/index';
+
 import CollaborationPage from './containers/CollaborationPage/index';
 // import SomePage from './components/SomePage';
 // import SomeOtherPage from './components/SomeOtherPage';
@@ -37,8 +37,7 @@ export function Routes() {
         <Route exact path="/main" component={MainPage} />
         <Route exact path="/products" component={ProductsPage} />
         <Route exact path="/contacts" component={ContactsPage} />
-        <Route exact path="/products/:id" component={MoreInfoPage} />
-        <Route exact path="/catalogue" component={CataloguePage} />
+        <Route exact path="/products/:id" component={ParticularProductPage} />
         <Route exact path="/collaboration" component={CollaborationPage} />
         <Route exact path="/aboutus" component={AboutUsPage} />
         <Route exact path="/services" component={ServicesPage} />

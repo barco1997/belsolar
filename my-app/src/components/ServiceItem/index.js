@@ -4,7 +4,7 @@ import React from 'react';
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 
-import ph1 from './ph1.png';
+//  import ph1 from './ph1.png';
 const ProductItemWrapper = styled.div`
   width: 320px;
   height: 220px;
@@ -54,9 +54,7 @@ export class ServiceItem extends React.Component {
   //}
   render() {
     return (
-      <ProductItemWrapper
-        background={this.props.background ? this.props.background : ph1}
-      >
+      <ProductItemWrapper background={this.props.background}>
         <Overlay>
           <div
             style={{

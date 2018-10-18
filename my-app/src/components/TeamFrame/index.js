@@ -5,7 +5,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { media } from '../../utils/media';
 import { TeamCard } from '../TeamCard';
-
+import axios from 'axios';
 const CatCardWrapper = styled.div`
   flex-direction: row;
   display: flex;
@@ -42,18 +42,25 @@ const TextCaption = styled.div`
 `;
 
 export class TeamFrame extends React.Component {
-  //  constructor(props, context) {
-  //  super(props, context);
-  //    this.state = {
-  //    id: this.getId(),
-  //  };
-  //  this.getId = this.getId.bind(this);
-  //}
-
-  //getId() {
-  // const currentLocation = this.props.location.pathname.slice(14);
-  // return currentLocation;
-  //}
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: [],
+    };
+  }
+  componentDidMount() {
+    axios
+      .get(
+        'http://u2289.blue.elastictech.org/wp-json/wp/v2/participants-api?_embed',
+      )
+      .then(res => {
+        this.setState({
+          posts: res.data,
+        });
+        console.log(this.state.posts);
+      })
+      .catch(error => console.log(error));
+  }
   render() {
     return (
       <div
@@ -66,11 +73,14 @@ export class TeamFrame extends React.Component {
       >
         <CatCardWrapper>
           {this.props.header && <TextCaption>Наша команда:</TextCaption>}
-          <TeamCard />
-          <TeamCard />
-          <TeamCard />
-          <TeamCard />
-          <TeamCard />
+          {this.state.posts.map(post => (
+            <TeamCard
+              title={post.title.rendered}
+              text={post.content.rendered}
+              key={post.id}
+              image={post._embedded['wp:featuredmedia'][0].source_url}
+            />
+          ))}
         </CatCardWrapper>
       </div>
     );

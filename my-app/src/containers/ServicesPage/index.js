@@ -9,7 +9,7 @@ import React from 'react';
 import { media } from '../../utils/media';
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-
+import axios from 'axios';
 //  import SendButton from 'components/SendButton';
 //  import EyelandTagBlock from 'components/EyelandTagBlock';
 //  import SocialTagBlock from 'components/SocialTagBlock';
@@ -36,9 +36,9 @@ import Footer from '../../components/Footer/index';
 import background from './main.png';
 
 import { ServiceCard } from '../../components/ServiceCard';
-import photo11 from './photo11.png';
-import photo22 from './photo22.png';
-import photo33 from './photo33.png';
+//  import photo11 from './photo11.png';
+//  import photo22 from './photo22.png';
+//  import photo33 from './photo33.png';
 const CouponInfoWrapper = styled.div`
   width: 100%;
   overflow: hidden;
@@ -98,19 +98,31 @@ const MainWrapper = styled.div`
 
 /* eslint-disable react/prefer-stateless-function */
 export class ServicesPage extends React.Component {
-  //  constructor(props, context) {
-  //  super(props, context);
-  //    this.state = {
-  //    id: this.getId(),
-  //  };
-  //  this.getId = this.getId.bind(this);
-  //}
-
-  //getId() {
-  // const currentLocation = this.props.location.pathname.slice(14);
-  // return currentLocation;
-  //}
+  constructor(props) {
+    super(props);
+    this.state = {
+      first: [],
+      posts: [],
+    };
+  }
+  componentDidMount() {
+    axios
+      .get(
+        'http://u2289.blue.elastictech.org/wp-json/wp/v2/services-api?_embed',
+      )
+      .then(res => {
+        this.setState({
+          first: res.data.slice(0, 1),
+          posts: res.data.slice(1),
+        });
+        console.log(this.state.first);
+      })
+      .catch(error => console.log(error));
+  }
   render() {
+    function isOdd(num) {
+      return num % 2;
+    }
     return (
       <CouponInfoWrapper>
         <StyledBar>
@@ -119,24 +131,25 @@ export class ServicesPage extends React.Component {
         <BackGround>
           <Image back={background}>
             <MainWrapper>
-              <ServiceCard
-                img={photo11}
-                title="Исследования?"
-                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-              />
+              {this.state.first.map(post => (
+                <ServiceCard
+                  title={post.title.rendered}
+                  text={post.content.rendered}
+                  key={post.id}
+                  img={post._embedded['wp:featuredmedia'][0].source_url}
+                />
+              ))}
             </MainWrapper>
           </Image>
-          <ServiceCard
-            right
-            img={photo22}
-            title="Установка?"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-          />
-          <ServiceCard
-            img={photo33}
-            title="Изготовления?"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-          />
+          {this.state.posts.map((post, index) => (
+            <ServiceCard
+              right={!isOdd(index)}
+              title={post.title.rendered}
+              text={post.content.rendered}
+              key={post.id}
+              img={post._embedded['wp:featuredmedia'][0].source_url}
+            />
+          ))}
           <StyledFooter>
             <Footer />
           </StyledFooter>

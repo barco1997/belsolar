@@ -4,7 +4,7 @@ import React from 'react';
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { media } from '../../utils/media';
-
+import axios from 'axios';
 import ProductItem from '../ProductItem/index';
 import LinkButton from '../LinkButton/index';
 const Description = styled.div`
@@ -96,18 +96,25 @@ const Header = styled.div`
 `;
 
 export class ProductsFrame extends React.Component {
-  //  constructor(props, context) {
-  //  super(props, context);
-  //    this.state = {
-  //    id: this.getId(),
-  //  };
-  //  this.getId = this.getId.bind(this);
-  //}
-
-  //getId() {
-  // const currentLocation = this.props.location.pathname.slice(14);
-  // return currentLocation;
-  //}
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: [],
+    };
+  }
+  componentDidMount() {
+    axios
+      .get(
+        'http://u2289.blue.elastictech.org/wp-json/wp/v2/products-api?_embed',
+      )
+      .then(res => {
+        this.setState({
+          posts: this.props.main ? res.data.slice(0, 4) : res.data,
+        });
+        console.log(this.state.posts);
+      })
+      .catch(error => console.log(error));
+  }
   render() {
     return (
       <CatalogueCardWrapper>
@@ -123,42 +130,19 @@ export class ProductsFrame extends React.Component {
         </Description>
 
         <LowRow main={this.props.main}>
-          <ProductItem title="Системы отопления" description="wow" to="/main" />
-          <ProductItem title="Системы отопления" description="wow" to="/main" />
-          <ProductItem title="Системы отопления" description="wow" to="/main" />
-          <ProductItem title="Системы отопления" description="wow" to="/main" />
-          {!this.props.main && (
+          {this.state.posts.map(post => (
             <ProductItem
-              title="Системы отопления"
+              title={post.title.rendered}
               description="wow"
-              to="/main"
+              to={`/products/${post.id}`}
+              key={post.id}
+              background={post._embedded['wp:featuredmedia'][0].source_url}
             />
-          )}
-          {!this.props.main && (
-            <ProductItem
-              title="Системы отопления"
-              description="wow"
-              to="/main"
-            />
-          )}
-          {!this.props.main && (
-            <ProductItem
-              title="Системы отопления"
-              description="wow"
-              to="/main"
-            />
-          )}
-          {!this.props.main && (
-            <ProductItem
-              title="Системы отопления"
-              description="wow"
-              to="/main"
-            />
-          )}
+          ))}
           {this.props.main && (
             <MoreCapture>
               <div>Lorem ipsum dolor sit amet, conse ctetur ></div>
-              <LinkButton background="white" color="#2346ff" to="/main">
+              <LinkButton background="white" color="#2346ff" to="/products">
                 Смотреть все
               </LinkButton>
             </MoreCapture>

@@ -4,7 +4,7 @@ import React from 'react';
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { media } from '../../utils/media';
-import ph1 from './ph1.jpeg';
+//  import ph1 from './ph1.jpeg';
 
 const Overlay = styled.div`
   height: 280px;
@@ -42,7 +42,7 @@ const PositionCaption = styled.div`
   opacity: 0.5;
   font-size: 17px;
   font-weight: 500;
-  margin-top: 15px;
+  margin-top: 10px;
 `;
 
 /* eslint-disable react/prefer-stateless-function */
@@ -62,9 +62,11 @@ export class TeamCard extends React.Component {
   render() {
     return (
       <Overlay>
-        <Picture src={ph1} alt="lol" />
-        <LittleTitle>Станислав Артымович</LittleTitle>
-        <PositionCaption>Директор</PositionCaption>
+        <Picture src={this.props.image} alt="lol" />
+        <LittleTitle>{this.props.title}</LittleTitle>
+        <PositionCaption
+          dangerouslySetInnerHTML={{ __html: this.props.text }}
+        />
       </Overlay>
     );
   }

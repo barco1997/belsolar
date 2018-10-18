@@ -3,8 +3,9 @@ import React from 'react';
 
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
+import axios from 'axios';
 import { media } from '../../utils/media';
-import logo from './logo.png';
+//  import logo from './logo.png';
 const CatCardWrapper = styled.div`
   flex-direction: row;
   display: flex;
@@ -43,18 +44,25 @@ const ProductItemWrapper = styled.img`
   height: 100px;
 `;
 export class CollaborationFrame extends React.Component {
-  //  constructor(props, context) {
-  //  super(props, context);
-  //    this.state = {
-  //    id: this.getId(),
-  //  };
-  //  this.getId = this.getId.bind(this);
-  //}
-
-  //getId() {
-  // const currentLocation = this.props.location.pathname.slice(14);
-  // return currentLocation;
-  //}
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: [],
+    };
+  }
+  componentDidMount() {
+    axios
+      .get(
+        'http://u2289.blue.elastictech.org/wp-json/wp/v2/partners-api?_embed',
+      )
+      .then(res => {
+        this.setState({
+          posts: res.data,
+        });
+        console.log(this.state.posts);
+      })
+      .catch(error => console.log(error));
+  }
   render() {
     return (
       <div
@@ -67,16 +75,13 @@ export class CollaborationFrame extends React.Component {
       >
         <CatCardWrapper>
           {this.props.header && <TextCaption>Наши партнеры:</TextCaption>}
-          <ProductItemWrapper src={logo} alt="pokerface" />
-          <ProductItemWrapper src={logo} alt="pokerface" />
-          <ProductItemWrapper src={logo} alt="pokerface" />
-          <ProductItemWrapper src={logo} alt="pokerface" />
-          <ProductItemWrapper src={logo} alt="pokerface" />
-          <ProductItemWrapper src={logo} alt="pokerface" />
-          <ProductItemWrapper src={logo} alt="pokerface" />
-          <ProductItemWrapper src={logo} alt="pokerface" />
-          <ProductItemWrapper src={logo} alt="pokerface" />
-          <ProductItemWrapper src={logo} alt="pokerface" />
+          {this.state.posts.map(post => (
+            <ProductItemWrapper
+              alt="pokerface"
+              key={post.id}
+              src={post._embedded['wp:featuredmedia'][0].source_url}
+            />
+          ))}
         </CatCardWrapper>
       </div>
     );

@@ -120,7 +120,9 @@ export class ServiceCard extends React.Component {
           <ContactWrap right>
             <div>
               <Header>{this.props.title}</Header>
-              <LittleText>{this.props.text}</LittleText>
+              <LittleText
+                dangerouslySetInnerHTML={{ __html: this.props.text }}
+              />
             </div>
           </ContactWrap>
         )}
@@ -132,7 +134,9 @@ export class ServiceCard extends React.Component {
           <ContactWrap>
             <div>
               <Header>{this.props.title}</Header>
-              <LittleText>{this.props.text}</LittleText>
+              <LittleText
+                dangerouslySetInnerHTML={{ __html: this.props.text }}
+              />
             </div>
           </ContactWrap>
         )}
