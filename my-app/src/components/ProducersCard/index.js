@@ -33,22 +33,13 @@ const Overlay = styled.div`
 
 /* eslint-disable react/prefer-stateless-function */
 export class ProducersCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      toggle: false,
-    };
-  }
   render() {
-    const flag = this.state.toggle;
+    console.log('wonderful world', this.props.active, this.props.id);
     return (
-      <ProductItemWrapper activeNow={this.state.toggle}>
+      <ProductItemWrapper activeNow={this.props.active === this.props.id}>
         <Overlay
           onClick={() => {
             this.props.action(this.props.id);
-            this.setState({
-              toggle: !flag,
-            });
           }}
         >
           <div

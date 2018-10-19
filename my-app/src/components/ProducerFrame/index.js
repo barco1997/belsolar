@@ -92,6 +92,7 @@ export class ProducerFrame extends React.Component {
                 title={post}
                 key={index}
                 id={index}
+                active={this.state.index}
                 action={this.setId}
               />
             ))}

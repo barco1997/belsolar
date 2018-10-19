@@ -162,9 +162,20 @@ const EnhancedForm = withFormik({
     description: Yup.string().required('Profile info is required!'),
   }),
 
-  handleSubmit: () => {
-    //  props.sendEmail(values);
-    // setSubmitting(false);
+  handleSubmit: values => {
+    const api_key = '8968572e3b18ee42210d5978afef4371-bd350f28-2f8b85ff';
+    const domain = 'belsolar.dnsabr.com';
+    const mailgun = require('mailgun-js')({ apiKey: api_key, domain: domain });
+    let data = {
+      from: 'Excited User <me@samples.mailgun.org>',
+      to: 'b3181401@gmail.com',
+      subject: 'Hello',
+      text: JSON.stringify(values),
+    };
+
+    mailgun.messages().send(data, function(error, body) {
+      console.log(body);
+    });
   },
   displayName: 'CollaborationForm', // helps with React DevTools
 })(withStyles(styles)(CollaborationForm));
