@@ -15,18 +15,24 @@ const CatalogueCardWrapper = styled.div`
   font-size: 15px;
   
   `};
-
+  flex-wrap: ${props => (props.right ? 'wrap-reverse' : 'wrap')};
   font-family: 'Montserrat';
   font-size: 17px;
   font-weight: normal;
-  flex-wrap: wrap;
+
   background: ${props => (props.right ? 'white' : '#f4f4f4')};
 `;
 
 const Header = styled.div`
   ${media.desktop`
   font-size: 28px;
-  text-align: center;
+  text-align: flex-start;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  `};
+
+  ${media.phone`
+  margin-top: 0px;
   
   `};
 
@@ -54,11 +60,13 @@ const Imagine = styled.div`
 
 const Image = styled.img`
   ${media.desktop`
-  height: 170px;
-  width: 320px;
   
+  min-width: 320px;
+  width: 100%;
+  
+  margin-top: 0px;
   `};
-  height: 300px;
+  height: 320px;
   width: 565px;
   object-fit: cover;
   margin-top: 40px;
@@ -91,9 +99,11 @@ const ContactWrap = styled.div`
 const LittleText = styled.div`
   ${media.desktop`
   font-size: 12px;
-  text-align: center;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-top: 28px;
   `};
-
+  opacity: 0.5;
   font-size: 17px;
   font-weight: normal;
   margin-top: 38px;

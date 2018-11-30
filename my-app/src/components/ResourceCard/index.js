@@ -3,7 +3,7 @@ import React from 'react';
 
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-
+import { media } from '../../utils/media';
 //  import ph1 from './ph1.png';
 const ProductItemWrapper = styled.div`
   max-width: 530px;
@@ -14,7 +14,8 @@ const ProductItemWrapper = styled.div`
   flex-wrap: wrap;
   font-family: 'Montserrat';
   font-weight: normal;
-  font-size: 18px;
+  font-size: 16px;
+
   padding-right: 10px;
 
   &:hover {
@@ -106,12 +107,20 @@ const ProductItemWrapper = styled.div`
     }
   }
 `;
+const SaveText = styled.div`
+  ${media.phone`
+  display: none;
+  `};
+`;
 
 const Header = styled.div`
   flex: 1;
-  padding: 5px 0px;
+  padding: 8px 0px;
   padding-left: 10px;
-  font-size: 26px;
+  ${media.phone`
+  font-size: 17px;
+  `};
+  font-size: 20px;
   color: black;
 `;
 
@@ -125,8 +134,8 @@ export class ResourceCard extends React.Component {
     return (
       <ProductItemWrapper>
         <Header>{this.props.item.name}</Header>
-        <a href={this.props.item.src} className="buttonDownload">
-          Скачать PDF
+        <a href={this.props.item.src} className="buttonDownload" download>
+          <SaveText>Скачать PDF</SaveText>
         </a>
       </ProductItemWrapper>
     );

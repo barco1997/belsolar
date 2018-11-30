@@ -6,6 +6,7 @@
 
 import React from 'react';
 //  import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 import { media } from '../../utils/media';
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
@@ -28,9 +29,9 @@ import styled from 'styled-components';
 //  import { withFormik } from 'formik';
 //  import * as Yup from 'yup';
 import NavBar from '../../components/NavBar/index';
-import LinkButton from '../../components/LinkButton/index';
+import FrameButton from '../../components/FrameButton/index';
 import Footer from '../../components/Footer/index';
-//  import CouponHistory from '../../components/CouponHistory';
+import ScrollToTopOnMount from '../../components/ScrollToTopOnMount';
 //  import GoodHistory from '../../components/GoodHistory';
 // import messages from './messages';
 import background from './main.png';
@@ -122,6 +123,7 @@ const Description = styled.div`
     overflow: hidden;
 
     max-height: 130px;
+    opacity: 0.7;
   }
 `;
 
@@ -134,6 +136,15 @@ export class MainPage extends React.Component {
   //  };
   //  this.getId = this.getId.bind(this);
   //}
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+    this.scrollToDomRef = this.scrollToDomRef.bind(this);
+  }
+  scrollToDomRef = () => {
+    const myDomNode = ReactDOM.findDOMNode(this.myRef.current);
+    window.scrollTo(0, myDomNode.offsetTop - 60);
+  };
 
   //getId() {
   // const currentLocation = this.props.location.pathname.slice(14);
@@ -142,6 +153,7 @@ export class MainPage extends React.Component {
   render() {
     return (
       <CouponInfoWrapper>
+        <ScrollToTopOnMount />
         <StyledBar>
           <NavBar />
         </StyledBar>
@@ -165,15 +177,15 @@ export class MainPage extends React.Component {
                   marginTop: '5px',
                 }}
               >
-                <LinkButton background="#2346ff" to="/main">
+                <FrameButton background="#2ecc71" action={this.scrollToDomRef}>
                   Связаться
-                </LinkButton>
+                </FrameButton>
               </div>
             </MainWrapper>
           </Image>
           <ProductsFrame main />
           <ServicesFrame />
-          <ContactFrame />
+          <ContactFrame ref={this.myRef} />
           <CollaborationFrame />
           <StyledFooter>
             <Footer />

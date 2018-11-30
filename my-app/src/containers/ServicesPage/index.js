@@ -28,6 +28,7 @@ import axios from 'axios';
 //  import { withFormik } from 'formik';
 //  import * as Yup from 'yup';
 import NavBar from '../../components/NavBar/index';
+import ScrollToTopOnMount from '../../components/ScrollToTopOnMount';
 //  import LinkButton from '../../components/LinkButton/index';
 import Footer from '../../components/Footer/index';
 //  import CouponHistory from '../../components/CouponHistory';
@@ -53,24 +54,6 @@ const BackGround = styled.div`
   width: 100%;
   flex-direction: column;
 `;
-const Image = styled.div`
-  background-image: url(${props => props.back}); /* The image used */
-  background-position: center top;
-  background-repeat: no-repeat; /* Do not repeat the image background-position: center;*/
-  background-size: cover;
-  ${media.phone`
-  
-  
-  background: #f4f4f4;
-  `};
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  height: 100%;
-  min-height: 100vh;
-
-  /* The image used */
-`;
 
 const StyledBar = styled.div`
   width: 100%;
@@ -85,15 +68,14 @@ const StyledFooter = styled.div`
   align-self: flex-end;
 `;
 
-const MainWrapper = styled.div`
-  ${media.desktop`
-  font-size: 15px;
+const StyledImage = styled.img`
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  ${media.phone`
+  display: none;
   `};
-
-  color: black;
-  & > * {
-    margin-top: 30px;
-  }
 `;
 
 /* eslint-disable react/prefer-stateless-function */
@@ -125,31 +107,38 @@ export class ServicesPage extends React.Component {
     }
     return (
       <CouponInfoWrapper>
+        <ScrollToTopOnMount />
         <StyledBar>
           <NavBar />
         </StyledBar>
         <BackGround>
-          <Image back={background}>
-            <MainWrapper>
-              {this.state.first.map(post => (
-                <ServiceCard
-                  title={post.title.rendered}
-                  text={post.content.rendered}
-                  key={post.id}
-                  img={post._embedded['wp:featuredmedia'][0].source_url}
-                />
-              ))}
-            </MainWrapper>
-          </Image>
-          {this.state.posts.map((post, index) => (
-            <ServiceCard
-              right={!isOdd(index)}
-              title={post.title.rendered}
-              text={post.content.rendered}
-              key={post.id}
-              img={post._embedded['wp:featuredmedia'][0].source_url}
-            />
-          ))}
+          <div
+            style={{
+              marginTop: '70px',
+              minHeight: '900px',
+              background: '#f4f4f4',
+            }}
+          >
+            <StyledImage src={background} alt="lol" />
+            {this.state.first.map(post => (
+              <ServiceCard
+                title={post.title.rendered}
+                text={post.content.rendered}
+                key={post.id}
+                img={post._embedded['wp:featuredmedia'][0].source_url}
+              />
+            ))}
+
+            {this.state.posts.map((post, index) => (
+              <ServiceCard
+                right={!isOdd(index)}
+                title={post.title.rendered}
+                text={post.content.rendered}
+                key={post.id}
+                img={post._embedded['wp:featuredmedia'][0].source_url}
+              />
+            ))}
+          </div>
           <StyledFooter>
             <Footer />
           </StyledFooter>

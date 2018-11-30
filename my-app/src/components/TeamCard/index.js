@@ -7,7 +7,6 @@ import { media } from '../../utils/media';
 //  import ph1 from './ph1.jpeg';
 
 const Overlay = styled.div`
-  height: 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,6 +17,10 @@ const Overlay = styled.div`
 const Picture = styled.img`
   height: 130px;
   width: 130px;
+  ${media.phone`
+  width: 80px;
+  height: 80px;
+  `};
   object-fit: cover;
   border-radius: 50%;
 `;
@@ -27,7 +30,10 @@ const LittleTitle = styled.div`
   font-size: 14px;
   text-align: center;
   `};
-
+  ${media.phone`
+  font-size: 9px;
+  margin-top: 20px;
+  `};
   font-size: 15px;
 
   font-weight: 700;
@@ -38,6 +44,10 @@ const PositionCaption = styled.div`
   ${media.desktop`
   font-size: 15px;
   text-align: center;
+  `};
+  ${media.phone`
+  font-size: 11px;
+  margin-top: 0px;
   `};
   opacity: 0.5;
   font-size: 17px;

@@ -36,6 +36,7 @@ import logo from './logo.png';
 //  import GoodHistory from '../../components/GoodHistory';
 // import messages from './messages';
 import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Burger = styled.div`
   margin: 0;
@@ -109,7 +110,7 @@ const NavBarWrapper = styled.div`
   justify-content: space-between;
 
   align-items: center;
-  background: ${props => (props.color ? props.color : 'black')};
+  background: ${props => (props.color ? props.color : 'white')};
 `;
 
 const AdditionalWrapper = styled.div`
@@ -142,12 +143,12 @@ const LanguageToggle = styled.div`
 `;
 const Ru = styled.div`
   color: white;
-  background: #2346ff;
+  background: #2ecc71;
 `;
 
 const En = styled.div`
   color: #949494;
-  background: #2b2b2b;
+  background: #e8ebef;
 `;
 
 const Number = styled.div`
@@ -157,7 +158,7 @@ const Number = styled.div`
   flex-direction: row;
   font-weight: normal;
   align-items: center;
-  background: #2346ff;
+  background: #2ecc71;
   padding-left: 30px;
   ${media.desktop`display: none;`};
 `;
@@ -168,6 +169,7 @@ const Logo = styled(Link)`
   height: 33px;
   margin-bottom: -2px;
   margin-left: -30px;
+  ${media.desktop`margin-left: 35px;`};
 `;
 
 const Menu = styled.div`
@@ -179,12 +181,22 @@ const Menu = styled.div`
     margin: 0px 15px;
   }
 `;
+const LogoWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  ${media.desktop`justify-content: flex-start;`};
+`;
 
-const NavMenuItem = styled(Link)`
+const NavMenuItem = styled(NavLink)`
   padding: 7px 0px;
   text-decoration: none;
   color: #949494;
   ${media.desktop`display: none;`};
+  &:hover,
+  &.selected {
+    color: #2ecc71;
+  }
 `;
 
 /* eslint-disable react/prefer-stateless-function */
@@ -208,21 +220,33 @@ export class NavBar extends React.Component {
     return (
       <AdditionalWrapper>
         <NavBarWrapper color={this.props.color}>
-          <div style={{ flex: '1', display: 'flex', justifyContent: 'center' }}>
+          <LogoWrapper>
             <Logo to="/main">
               <img style={{ height: '30px' }} src={logo} alt="lol" />
             </Logo>
-          </div>
+          </LogoWrapper>
           <div style={{ marginRight: '30px' }}>
             <Menu>
-              <NavMenuItem to="/main">ГЛАВНАЯ</NavMenuItem>
+              <NavMenuItem activeClassName="selected" to="/main">
+                ГЛАВНАЯ
+              </NavMenuItem>
 
-              <NavMenuItem to="/products">ПРОДУКТЫ</NavMenuItem>
-              <NavMenuItem to="/services">УСЛУГИ</NavMenuItem>
-              <NavMenuItem to="/aboutus">О&nbsp;КОМПАНИИ</NavMenuItem>
+              <NavMenuItem activeClassName="selected" to="/products">
+                ПРОДУКТЫ
+              </NavMenuItem>
+              <NavMenuItem activeClassName="selected" to="/services">
+                УСЛУГИ
+              </NavMenuItem>
+              <NavMenuItem activeClassName="selected" to="/aboutus">
+                О&nbsp;КОМПАНИИ
+              </NavMenuItem>
 
-              <NavMenuItem to="/collaboration">ПАРТНЕРЫ</NavMenuItem>
-              <NavMenuItem to="/contacts">КОНТАКТЫ</NavMenuItem>
+              <NavMenuItem activeClassName="selected" to="/collaboration">
+                ПАРТНЕРЫ
+              </NavMenuItem>
+              <NavMenuItem activeClassName="selected" to="/contacts">
+                КОНТАКТЫ
+              </NavMenuItem>
               <LanguageToggle>
                 <En>En</En>
                 <Ru>Ru</Ru>
@@ -249,14 +273,26 @@ export class NavBar extends React.Component {
                 <div style={{ width: '100%' }}>
                   <div style={{ padding: '2em' }}>
                     <MenuWrapper>
-                      <MenuItem to="/main">ГЛАВНАЯ</MenuItem>
+                      <MenuItem activeClassName="selected" to="/main">
+                        ГЛАВНАЯ
+                      </MenuItem>
 
-                      <MenuItem to="/products">ПРОДУКТЫ</MenuItem>
-                      <MenuItem to="/services">УСЛУГИ</MenuItem>
-                      <MenuItem to="/aboutus">О&nbsp;КОМПАНИИ</MenuItem>
+                      <MenuItem activeClassName="selected" to="/products">
+                        ПРОДУКТЫ
+                      </MenuItem>
+                      <MenuItem activeClassName="selected" to="/services">
+                        УСЛУГИ
+                      </MenuItem>
+                      <MenuItem activeClassName="selected" to="/aboutus">
+                        О&nbsp;КОМПАНИИ
+                      </MenuItem>
 
-                      <MenuItem to="/collaboration">ПАРТНЕРЫ</MenuItem>
-                      <MenuItem to="/contacts">КОНТАКТЫ</MenuItem>
+                      <MenuItem activeClassName="selected" to="/collaboration">
+                        ПАРТНЕРЫ
+                      </MenuItem>
+                      <MenuItem activeClassName="selected" to="/contacts">
+                        КОНТАКТЫ
+                      </MenuItem>
                     </MenuWrapper>
                   </div>
                 </div>

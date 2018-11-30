@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { media } from '../../utils/media';
 /* eslint-disable indent */
 const Button = styled(Link)`
   text-decoration: none;
@@ -26,7 +27,11 @@ const Button = styled(Link)`
   align-items: center;
 
   transition: background 300ms ease-in-out;
-  font-size: 14px;
+  font-size: 11px;
+  ${media.phone`
+  font-size: 8px;
+  height: 38px;
+  `};
   font-weight: 700;
   &:hover {
     background: rgba(0, 0, 0, 0.61);
@@ -34,8 +39,11 @@ const Button = styled(Link)`
 
   & > * {
     padding-right: 12px;
-    margin-top: 4px;
+    margin-top: 6px;
     margin-left: -14px;
+    ${media.phone`
+    margin-left: -42px;
+  `};
     .container {
       display: flex;
       align-items: center;
@@ -52,6 +60,7 @@ const Button = styled(Link)`
     }
     .the-arrow {
       width: 40px;
+
       transition: all 0.2s;
 
       &.-left {
@@ -84,6 +93,9 @@ const Button = styled(Link)`
 
         > .shaft {
           width: 40px;
+          ${media.phone`
+      width: 28px;
+  `};
           transition-delay: 0.2s;
 
           &:before,
@@ -206,8 +218,8 @@ const Button = styled(Link)`
         transition: all 0.2s;
 
         > .text {
-          margin: 0 8px 0 0;
-          line-height: 1;
+          margin: 0px 8px -7px 13px;
+          line-height: 1.1;
         }
 
         > .the-arrow {

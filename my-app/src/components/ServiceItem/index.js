@@ -1,6 +1,6 @@
 import React from 'react';
 //  import PropTypes from 'prop-types';
-
+import { media } from '../../utils/media';
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 
@@ -8,6 +8,14 @@ import styled from 'styled-components';
 const ProductItemWrapper = styled.div`
   width: 320px;
   height: 220px;
+  ${media.desktop`
+  width: 41.5vw;
+  height: 30vw;
+  `};
+  ${media.phone`
+  width: 320px;
+  height: 220px;
+  `};
   display: flex;
   flex-direction: column;
   background-image: url(${props => props.background}); /* The image used */
@@ -17,23 +25,22 @@ const ProductItemWrapper = styled.div`
   &:hover {
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
   }
-  font-family: 'Century Gothic';
+  font-family: 'Montserrat';
 `;
 
 const Overlay = styled.div`
   width: 100%;
   height: 100%;
-  background: rgba(48, 48, 48, 0.85);
+  background: rgba(48, 48, 48, 0.45);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-family: 'Montserran';
+  font-family: 'Montserrat';
   font-weight: normal;
   font-size: 20px;
   color: white;
-  opacity: 0;
+  opacity: 1;
   &:hover {
-    opacity: 1;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
   }
 `;

@@ -14,6 +14,7 @@ import axios from 'axios';
 import NavBar from '../../components/NavBar/index';
 //  import LinkButton from '../../components/LinkButton/index';
 import Footer from '../../components/Footer/index';
+import ScrollToTopOnMount from '../../components/ScrollToTopOnMount';
 //  import CouponHistory from '../../components/CouponHistory';
 //  import GoodHistory from '../../components/GoodHistory';
 // import messages from './messages';
@@ -36,19 +37,6 @@ const BackGround = styled.div`
   width: 100%;
   flex-direction: column;
 `;
-const Image = styled.div`
-  background-image: url(${props => props.back}); /* The image used */
-  background-position: center top;
-  background-repeat: no-repeat; /* Do not repeat the image background-position: center;*/
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 100%;
-  min-height: 100vh;
-
-  /* this.props.match.params.id */
-`;
 
 const StyledBar = styled.div`
   width: 100%;
@@ -63,19 +51,14 @@ const StyledFooter = styled.div`
   align-self: flex-end;
 `;
 
-const MainWrapper = styled.div`
-  margin-top: 32vh;
-  ${media.desktop`
-  font-size: 15px;
-  `};
+const StyledImage = styled.img`
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
   ${media.phone`
-  margin-top: 40px;
+  display: none;
   `};
-
-  color: black;
-  & > * {
-    margin-top: 30px;
-  }
 `;
 
 /* eslint-disable react/prefer-stateless-function */
@@ -124,22 +107,18 @@ export class ContactsPage extends React.Component {
   render() {
     return (
       <CouponInfoWrapper>
+        <ScrollToTopOnMount />
         <StyledBar>
           <NavBar />
         </StyledBar>
         <BackGround>
-          <Image back={background}>
-            <MainWrapper>
-              <div>
-                {this.state.posts && (
-                  <ProducerFrame
-                    posts={this.state.posts}
-                    pdfs={this.state.pdfs}
-                  />
-                )}
-              </div>
-            </MainWrapper>
-          </Image>
+          <div style={{ marginTop: '70px' }} />
+          <StyledImage src={background} alt="lol" />
+          <div>
+            {this.state.posts && (
+              <ProducerFrame posts={this.state.posts} pdfs={this.state.pdfs} />
+            )}
+          </div>
 
           <StyledFooter>
             <Footer />

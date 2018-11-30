@@ -1,6 +1,6 @@
 import React from 'react';
 //  import PropTypes from 'prop-types';
-
+import { media } from '../../utils/media';
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import LinkButton from './button';
@@ -8,6 +8,15 @@ import ph1 from './ph1.png';
 const ProductItemWrapper = styled.div`
   width: 240px;
   height: 220px;
+  ${media.desktop`
+  width: 26.6vw;
+  height: 26.6vw;
+  `};
+  ${media.phone`
+  width: 40vw;
+  height: 40vw;
+  `};
+
   display: flex;
   flex-direction: column;
   background-image: url(${props => props.background}); /* The image used */
@@ -17,7 +26,6 @@ const ProductItemWrapper = styled.div`
   &:hover {
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
   }
-  font-family: 'Century Gothic';
 `;
 
 const Overlay = styled.div`
@@ -27,7 +35,8 @@ const Overlay = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  font-family: 'Century Gothic';
+  font-family: 'Montserrat';
+  font-weight: normal;
   font-size: 12px;
 `;
 
@@ -55,10 +64,9 @@ export class ProductItem extends React.Component {
             style={{
               display: 'flex',
               justifyContent: 'center',
-              marginTop: '5px',
             }}
           >
-            <LinkButton background="#2346ff" to={this.props.to}>
+            <LinkButton background="#2ecc71" to={this.props.to}>
               {this.props.title}
             </LinkButton>
           </div>

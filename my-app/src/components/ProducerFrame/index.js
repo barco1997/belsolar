@@ -34,7 +34,7 @@ const LowRow = styled.div`
 
 const CatalogueCardWrapper = styled.div`
   flex-direction: column;
-  min-height: 550px;
+  min-height: 450px;
   display: flex;
   ${media.desktop`
   align-items: center;

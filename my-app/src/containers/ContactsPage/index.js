@@ -28,6 +28,7 @@ import styled from 'styled-components';
 //  import { withFormik } from 'formik';
 //  import * as Yup from 'yup';
 import NavBar from '../../components/NavBar/index';
+import ScrollToTopOnMount from '../../components/ScrollToTopOnMount';
 //  import LinkButton from '../../components/LinkButton/index';
 import Footer from '../../components/Footer/index';
 //  import CouponHistory from '../../components/CouponHistory';
@@ -51,19 +52,6 @@ const BackGround = styled.div`
   width: 100%;
   flex-direction: column;
 `;
-const Image = styled.div`
-  background-image: url(${props => props.back}); /* The image used */
-  background-position: center top;
-  background-repeat: no-repeat; /* Do not repeat the image background-position: center;*/
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  height: 100%;
-  min-height: 100vh;
-
-  /* The image used */
-`;
 
 const StyledBar = styled.div`
   width: 100%;
@@ -77,16 +65,14 @@ const StyledFooter = styled.div`
   width: 100%;
   align-self: flex-end;
 `;
-
-const MainWrapper = styled.div`
-  ${media.desktop`
-  font-size: 15px;
+const StyledImage = styled.img`
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  ${media.phone`
+  display: none;
   `};
-
-  color: black;
-  & > * {
-    margin-top: 30px;
-  }
 `;
 
 /* eslint-disable react/prefer-stateless-function */
@@ -106,15 +92,14 @@ export class ContactsPage extends React.Component {
   render() {
     return (
       <CouponInfoWrapper>
+        <ScrollToTopOnMount />
         <StyledBar>
           <NavBar />
         </StyledBar>
         <BackGround>
-          <Image back={background}>
-            <MainWrapper>
-              <ContactFrame full />
-            </MainWrapper>
-          </Image>
+          <div style={{ marginTop: '70px' }} />
+          <StyledImage src={background} alt="lol" />
+          <ContactFrame full />
 
           <StyledFooter>
             <Footer />

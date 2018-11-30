@@ -36,7 +36,7 @@ const TextCaption = styled.div`
   margin-bottom: 10px;
   ${media.desktop`
   font-size: 32px;
-  text-align: center;
+  
   `};
 `;
 
@@ -49,6 +49,7 @@ export class CollaborationFrame extends React.Component {
     this.state = {
       posts: [],
     };
+    this.getHref = this.getHref.bind(this);
   }
   componentDidMount() {
     axios
@@ -63,6 +64,15 @@ export class CollaborationFrame extends React.Component {
       })
       .catch(error => console.log(error));
   }
+
+  getHref(value) {
+    const string = value;
+    const regex = /<a.*?href="(.*?)"/g;
+    let match = regex.exec(string);
+    const href = match[1];
+    return href;
+  }
+
   render() {
     return (
       <div
@@ -76,11 +86,13 @@ export class CollaborationFrame extends React.Component {
         <CatCardWrapper>
           {this.props.header && <TextCaption>Наши партнеры:</TextCaption>}
           {this.state.posts.map(post => (
-            <ProductItemWrapper
-              alt="pokerface"
-              key={post.id}
-              src={post._embedded['wp:featuredmedia'][0].source_url}
-            />
+            <a href={this.getHref(post.content.rendered)}>
+              <ProductItemWrapper
+                alt="pokerface"
+                key={post.id}
+                src={post._embedded['wp:featuredmedia'][0].source_url}
+              />
+            </a>
           ))}
         </CatCardWrapper>
       </div>

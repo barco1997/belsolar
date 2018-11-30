@@ -1,6 +1,6 @@
 import React from 'react';
 //  import PropTypes from 'prop-types';
-
+import { media } from '../../utils/media';
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 
@@ -8,6 +8,10 @@ import styled from 'styled-components';
 const ProductItemWrapper = styled.div`
   width: 240px;
   height: 160px;
+  ${media.phone`
+  width: 140px;
+  height: 100px;
+  `};
   display: flex;
   flex-direction: column;
   background: white;
@@ -22,11 +26,13 @@ const ProductItemWrapper = styled.div`
 const Overlay = styled.div`
   width: 100%;
   height: 100%;
-
+  ${media.phone`
+  font-size: 21px;
+  `};
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-family: 'Montserran';
+  font-family: 'Montserrat';
   font-weight: normal;
   font-size: 24px;
 `;

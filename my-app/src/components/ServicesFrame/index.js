@@ -9,6 +9,7 @@ import ServiceItem from '../ServiceItem/index';
 import LinkButton from '../LinkButton/index';
 const Description = styled.div`
   max-width: 690px;
+  align-self: flex-start;
   & > p {
     display: -webkit-box;
     -webkit-line-clamp: 5;
@@ -16,30 +17,53 @@ const Description = styled.div`
 
     text-overflow: ellipsis;
     overflow: hidden;
+    opacity: 0.5;
   }
 `;
 
 const LowRow = styled.div`
-  width: 100%;
   max-width: 1080px;
   display: flex;
   flex-wrap: wrap;
   margin: 0px -20px;
-  margin-top: 35px;
+  margin-top: 20px;
+
   ${media.desktop`
-  justify-content: center;
+  margin: 0vw -1.5vw;
+  
   `};
+
   & > div {
-    margin: 15px 20px;
+    margin: 20px 20px;
+    ${media.desktop`
+    margin: 1.5vw 1.5vw;
+  `};
+    ${media.phone`
+    margin: 20px 20px;
+  `};
   }
+
+  ${media.phone`
+  justify-content: center;
+  margin: 0px -20px;
+  margin-top: 20px;
+  `};
+
   & > div:nth-last-child(1) {
     margin-top: 35px;
   }
+  margin-bottom: 30px;
 `;
 
 const MoreCapture = styled.div`
   width: 100%;
-
+  ${media.desktop`
+  width: 98.80%;
+  `};
+  ${media.phone`
+  justify-content: center;
+  width: 100%;
+  `};
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -49,13 +73,14 @@ const MoreCapture = styled.div`
   & > :nth-child(2) {
     margin-left: 15px;
   }
-  ${media.desktop`
-  justify-content: center;
-  & > :nth-child(2) {
-    margin-right: 15px;
-    margin-top: 10px;
-  }
+  ${media.phone`
   
+  
+  & > :nth-child(2) {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 10px; /*pay attention here */
+  }
   `};
 `;
 /* const LowRowItem = styled.div`
@@ -64,13 +89,17 @@ const MoreCapture = styled.div`
 
 const CatalogueCardWrapper = styled.div`
   flex-direction: column;
-  min-height: 790px;
+  min-height: 590px;
   display: flex;
+  padding-bottom: 20px;
   ${media.desktop`
-  align-items: center;
+  
   padding-left: 7vw;
   padding-right: 7vw;
   font-size: 15px;
+  `};
+  ${media.phone`
+  align-items: center;
   `};
   background: white;
   font-family: 'Montserrat';
@@ -85,12 +114,23 @@ const Header = styled.div`
   font-size: 32px;
   
   `};
-
+  align-self: flex-start;
   font-size: 40px;
   font-weight: 700;
   margin-top: 150px;
   ${media.phone`
   margin-top: 35px;
+  
+  `};
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  width: 180px;
+  ${media.phone`
+  justify-content: center;
+  width: 100%;
+  
   `};
 `;
 
@@ -141,9 +181,11 @@ export class ServicesFrame extends React.Component {
           ))}
           <MoreCapture>
             <div>Lorem ipsum dolor sit amet, conse ctetur > </div>
-            <LinkButton background="white" color="#2346ff" to="/services">
-              Смотреть все
-            </LinkButton>
+            <ButtonWrapper>
+              <LinkButton background="white" color="#2ecc71" to="/services">
+                Смотреть все
+              </LinkButton>
+            </ButtonWrapper>
           </MoreCapture>
         </LowRow>
       </CatalogueCardWrapper>

@@ -14,7 +14,7 @@ const CatCardWrapper = styled.div`
   padding-left: 12vw;
   padding-right: 12vw;
 
-  margin: 25px -20px;
+  margin: 30px -20px;
   & > div {
     margin: 20px 20px;
   }
@@ -23,6 +23,11 @@ const CatCardWrapper = styled.div`
   justify-content: center;
   padding-left: 7vw;
   padding-right: 7vw;
+  
+  `};
+  ${media.phone`
+  justify-content: center;
+  margin: 25px -20px;
   
   `};
 `;
@@ -34,10 +39,12 @@ const TextCaption = styled.div`
   font-family: 'Montserrat';
   font-size: 40px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   ${media.desktop`
   font-size: 32px;
-  text-align: center;
+  margin-right: 5vw;
+  margin-left: 5vw;
+  margin-bottom: 10px;
   `};
 `;
 

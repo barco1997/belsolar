@@ -3,7 +3,7 @@ import React from 'react';
 
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-
+import { media } from '../../utils/media';
 //  import SendButton from 'components/SendButton';
 //  import EyelandTagBlock from 'components/EyelandTagBlock';
 //  import SocialTagBlock from 'components/SocialTagBlock';
@@ -33,7 +33,7 @@ const FooterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   color: #717171;
-  font-family: 'Montserran';
+  font-family: 'Montserrat';
   font-weight: 500;
 `;
 
@@ -42,9 +42,9 @@ const UpperFooter = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   margin: 0px -30px;
-  font-size: 16px;
+  font-size: 13px;
 
-  background: black;
+  background: #f9f9f9;
   min-height: 210px;
   padding-bottom: 15px;
 `;
@@ -55,8 +55,9 @@ const LowerFooter = styled.div`
   text-decoration: none;
   display: flex;
   justify-content: center;
-  font-size: 13px;
-  background: #151515;
+  font-size: 12px;
+  color: white;
+  background: #2ecc71;
   align-items: center;
   & > p {
     width: 77%;
@@ -68,12 +69,29 @@ const FooterColumn = styled.div`
   display: flex;
   flex-direction: column;
   & > div {
-    margin-bottom: 4px;
+    margin-bottom: 9px;
   }
   & > :nth-child(1) {
     margin-top: 50px;
-    color: white;
-    line-height: 0.8;
+    color: black;
+    line-height: 1;
+  }
+  ${media.tablet`
+  display: none;
+  
+  `};
+`;
+const FooterColumnSpecial = styled.div`
+  margin: 0px 30px;
+  display: flex;
+  flex-direction: column;
+  & > div {
+    margin-bottom: 9px;
+  }
+  & > :nth-child(1) {
+    margin-top: 50px;
+    color: black;
+    line-height: 1;
   }
 `;
 
@@ -118,12 +136,12 @@ export class Footer extends React.Component {
               <div>Полиграфия</div>
               <div>Дизайн</div>
             </FooterColumn>
-            <FooterColumn>
+            <FooterColumnSpecial>
               <p>Контакты</p>
               <div>Куйбышева 9, каб. 310</div>
-              <div>+375 (29) 622-41-41</div>
-              <div>belsolar@gmail.com</div>
-            </FooterColumn>
+              <div>8 0162 23 67 91</div>
+              <div>info@bel-solar.by</div>
+            </FooterColumnSpecial>
           </div>
         </UpperFooter>
         <LowerFooter>

@@ -11,11 +11,12 @@ import { media } from '../../utils/media';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import { withFormik } from 'formik';
+import axios from 'axios';
 import * as Yup from 'yup';
-import bg from './bg.png';
+import bg from './bg.svg';
 import SendButton from '../../components/SendButton/index';
-import { api_key } from '../../config/keys/index.js';
-import { domain } from '../../config/keys/index.js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const styles = {
   input: {
@@ -58,6 +59,7 @@ const CollaborationForm = ({
   errors,
   isSubmitting,
   handleChange,
+
   handleBlur,
   handleSubmit,
 }) => (
@@ -137,11 +139,22 @@ const CollaborationForm = ({
               <SendButton
                 type="submit"
                 disabled={isSubmitting}
-                background="#2346ff"
+                background="#2ecc71"
               >
                 Send
               </SendButton>
             </SendCaption>
+            <ToastContainer
+              position="bottom-right"
+              autoClose={5000}
+              hideProgressBar
+              newestOnTop
+              closeOnClick
+              rtl={false}
+              pauseOnVisibilityChange
+              draggable
+              pauseOnHover
+            />
           </Grid>
         </Grid>
       </MuiThemeProvider>
@@ -166,22 +179,27 @@ const EnhancedForm = withFormik({
   }),
 
   handleSubmit: values => {
-    const api_key1 = api_key;
-    const domain1 = domain;
-    const mailgun = require('mailgun-js')({
-      apiKey: api_key1,
-      domain: domain1,
-    });
-    let data = {
-      from: 'Excited User <me@samples.mailgun.org>',
-      to: 'b3181401@gmail.com',
-      subject: 'Hello',
-      text: JSON.stringify(values),
-    };
-
-    mailgun.messages().send(data, function(error, body) {
-      console.log(body);
-    });
+    axios
+      .post('http://test.u2289.blue.elastictech.org/php/mailer.php', {
+        name: values.name,
+        number: values.phone,
+        title: values.company,
+        description: values.description,
+      })
+      .then(function(response) {
+        console.log(response);
+        toast.success('email successfully sent!', {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   },
   displayName: 'CollaborationForm', // helps with React DevTools
 })(withStyles(styles)(CollaborationForm));
@@ -210,7 +228,7 @@ const CatalogueCardWrapper = styled.div`
 const Header = styled.div`
   ${media.desktop`
   font-size: 32px;
-  text-align: center;
+  text-align: flex-start;
   `};
 
   font-size: 40px;
@@ -221,7 +239,7 @@ const Header = styled.div`
 const LittleTitle = styled.div`
   ${media.desktop`
   font-size: 15px;
-  text-align: center;
+  
   `};
 
   font-size: 17px;
@@ -232,7 +250,7 @@ const LittleTitle = styled.div`
 const AddressCaption = styled.div`
   ${media.desktop`
   font-size: 22px;
-  text-align: center;
+  
   `};
 
   font-size: 27px;
@@ -288,11 +306,14 @@ export class ContactFrame extends React.Component {
             <div>
               <Header>Контакты</Header>
               <LittleTitle>Адрес:</LittleTitle>
-              <AddressCaption>г. Брест, ул. Советская 49 </AddressCaption>
+              <AddressCaption>
+                г. Брест, ул. Куйбышева 9,
+                <br /> оф. 310.
+              </AddressCaption>
               <LittleTitle>Телефон:</LittleTitle>
-              <AddressCaption>+375 29 622-41-41</AddressCaption>
+              <AddressCaption>8 0162 23 67 91</AddressCaption>
               <LittleTitle>Почта:</LittleTitle>
-              <AddressCaption>belsolar@gmail.com</AddressCaption>
+              <AddressCaption>info@bel-solar.by</AddressCaption>
             </div>
           </ContactWrap>
         )}
