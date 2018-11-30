@@ -1,33 +1,33 @@
 @font-face {
   font-family: 'Century Gothic';
-  src: url('Montserrat-Regular.ttf') format('ttf');
+  src: local('Montserrat-Regular'), url('Montserrat-Regular.ttf');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('Montserrat-Regular.ttf') format('ttf');
+  src: local('Montserrat-Regular'), url('Montserrat-Regular.ttf');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('Montserrat-SemiBold.ttf') format('ttf');
+  src: local('Montserrat-SemiBold'), url('Montserrat-SemiBold.ttf');
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: 'Montserrat';
-  src: url('Montserrat-Medium.ttf') format('ttf');
+  src: local('Montserrat-Medium'), url('Montserrat-Medium.ttf');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('Montserrat-Bold.ttf') format('ttf');
+  src: local('Montserrat-Bold'), url('Montserrat-Bold.ttf');
   font-weight: 700;
   font-style: normal;
 }

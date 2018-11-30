@@ -14,6 +14,9 @@ import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import bg from './bg.png';
 import SendButton from '../../components/SendButton/index';
+import { api_key } from '../../config/keys/index.js';
+import { domain } from '../../config/keys/index.js';
+
 const styles = {
   input: {
     display: 'none',
@@ -162,7 +165,24 @@ const EnhancedForm = withFormik({
     description: Yup.string().required('Profile info is required!'),
   }),
 
-  handleSubmit: () => {},
+  handleSubmit: values => {
+    const api_key1 = api_key;
+    const domain1 = domain;
+    const mailgun = require('mailgun-js')({
+      apiKey: api_key1,
+      domain: domain1,
+    });
+    let data = {
+      from: 'Excited User <me@samples.mailgun.org>',
+      to: 'b3181401@gmail.com',
+      subject: 'Hello',
+      text: JSON.stringify(values),
+    };
+
+    mailgun.messages().send(data, function(error, body) {
+      console.log(body);
+    });
+  },
   displayName: 'CollaborationForm', // helps with React DevTools
 })(withStyles(styles)(CollaborationForm));
 
