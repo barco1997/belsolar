@@ -9,9 +9,9 @@ import { media } from '../../utils/media';
 const Overlay = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
   font-family: 'Montserrat';
+  width: 182px;
 `;
 
 const Picture = styled.img`

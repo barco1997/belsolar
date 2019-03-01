@@ -105,14 +105,14 @@ export class AboutUsPage extends React.Component {
           <UsCard
             img={photo1}
             title="Кто мы?"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            text="Компания ’’Белсолар’’ основана в 2016 году для внедрения инновационных технологий  в сфере энергетики для потребительских нужд населению. Наша компания обеспечивает экономичность, экологичность, безопасность и ответственность за качество."
           />
 
           <UsCard
             right
             img={photo2}
             title="Чем мы занимаемся?"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            text="Мы работаем с крупными партнерами в Германии, Польше, Украине, Китае. В нашей компании полный многоуровневый контроль продукта. Придя к нам, вы получите полную осведомленность о товаре, мы поможем вам правильно расставить акценты, тем самым удовлетворить ваши потребности. Основное направление компании оптовая и розничная торговля."
           />
           <TeamFrame header />
           <StyledFooter>

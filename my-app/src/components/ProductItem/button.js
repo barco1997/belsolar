@@ -220,6 +220,9 @@ const Button = styled(Link)`
         > .text {
           margin: 0px 8px -7px 13px;
           line-height: 1.1;
+          min-height: 30px;
+          display: flex;
+          align-items: center;
         }
 
         > .the-arrow {

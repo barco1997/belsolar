@@ -163,10 +163,9 @@ export class MainPage extends React.Component {
               <Header>Чем мы занимаемся?</Header>
               <Description>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
+                  ООО «Белсолар» - ваш партнёр в области возобновляемой
+                  энергетики. Эффективные качественные решения на основе
+                  новейших технологий по доступным ценам.
                 </p>
               </Description>
               <div

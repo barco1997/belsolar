@@ -68,6 +68,9 @@ export class ServiceItem extends React.Component {
               display: 'flex',
               justifyContent: 'center',
               marginTop: '5px',
+              marginLeft: '20px',
+              marginRight: '20px',
+              textAlign: 'center',
             }}
           >
             {this.props.title}

@@ -13,7 +13,7 @@ import Drawer from 'react-motion-drawer';
 import { media } from '../../utils/media';
 import MenuWrapper from '../MenuWrapper/index';
 import MenuItem from '../MenuItem/index';
-import logo from './logo.png';
+import logo from './belsolar.svg';
 //  import SendButton from 'components/SendButton';
 //  import EyelandTagBlock from 'components/EyelandTagBlock';
 //  import SocialTagBlock from 'components/SocialTagBlock';
@@ -119,7 +119,7 @@ const AdditionalWrapper = styled.div`
   flex-wrap: nowrap;
   max-width: 1920px;
   margin: 0 auto;
-
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
   color: white;
   font-family: 'Montserrat';
   font-weight: medium;

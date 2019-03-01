@@ -162,10 +162,10 @@ export class ServicesFrame extends React.Component {
 
         <Description>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            Мы можем предложить вас проектирование, монтаж, установка систем
+            выработки, контроля и управления энергией и разработку уникальных
+            решений специально для вас. Также мы занимаемся дистрибуцией
+            продукции в сфере энергетики.
           </p>
         </Description>
 
