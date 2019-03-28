@@ -4,6 +4,8 @@ import React from 'react';
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { media } from '../../utils/media';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 //  import SendButton from 'components/SendButton';
 //  import EyelandTagBlock from 'components/EyelandTagBlock';
 //  import SocialTagBlock from 'components/SocialTagBlock';
@@ -70,7 +72,9 @@ const FooterColumn = styled.div`
   flex-direction: column;
   & > div {
     margin-bottom: 9px;
+    max-width: 250px;
   }
+
   & > :nth-child(1) {
     margin-top: 50px;
     color: black;
@@ -95,15 +99,47 @@ const FooterColumnSpecial = styled.div`
   }
 `;
 
+const FooterLink = styled(Link)`
+  margin-bottom: 9px;
+  max-width: 250px;
+  text-decoration: none;
+  color: #717171;
+`;
+
 /* eslint-disable react/prefer-stateless-function */
 export class Footer extends React.Component {
-  //  constructor(props, context) {
-  //  super(props, context);
-  //    this.state = {
-  //    id: this.getId(),
-  //  };
-  //  this.getId = this.getId.bind(this);
-  //}
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      posts: [],
+      services: [],
+    };
+  }
+  componentDidMount() {
+    axios
+      .get(
+        'http://u2289.blue.elastictech.org/wp-json/wp/v2/products-api?_embed',
+      )
+      .then(res => {
+        this.setState({
+          posts: res.data,
+        });
+
+        //start of second axios
+        axios
+          .get(
+            'http://u2289.blue.elastictech.org/wp-json/wp/v2/services-api?_embed',
+          )
+          .then(resService => {
+            this.setState({
+              services: resService.data,
+            });
+          })
+          .catch(error => console.log(error));
+        //end of second axios
+      })
+      .catch(error => console.log(error));
+  }
 
   //getId() {
   // const currentLocation = this.props.location.pathname.slice(14);
@@ -112,38 +148,41 @@ export class Footer extends React.Component {
   render() {
     return (
       <FooterWrapper>
-        <UpperFooter>
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              alignItems: 'flex-start',
+        {this.state.services.length > 0 && (
+          <UpperFooter>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                alignItems: 'flex-start',
 
-              width: '77%',
-            }}
-          >
-            <FooterColumn>
-              <p>Продукты</p>
-              <div>Широкоформат</div>
-              <div>Наружка</div>
-              <div>Полиграфия</div>
-              <div>Дизайн</div>
-            </FooterColumn>
-            <FooterColumn>
-              <p>Услуги</p>
-              <div>Широкоформат</div>
-              <div>Наружка</div>
-              <div>Полиграфия</div>
-              <div>Дизайн</div>
-            </FooterColumn>
-            <FooterColumnSpecial>
-              <p>Контакты</p>
-              <div>Куйбышева 9, каб. 310</div>
-              <div>8 0162 23 67 91</div>
-              <div>info@bel-solar.by</div>
-            </FooterColumnSpecial>
-          </div>
-        </UpperFooter>
+                width: '77%',
+              }}
+            >
+              <FooterColumn>
+                <p>Продукты</p>
+                {this.state.posts.map(post => (
+                  <FooterLink to={`/products/${post.id}`}>
+                    {post.title.rendered}
+                  </FooterLink>
+                ))}
+              </FooterColumn>
+              <FooterColumn>
+                <p>Услуги</p>
+                {this.state.services.map(service => (
+                  <div>{service.title.rendered}</div>
+                ))}
+              </FooterColumn>
+              <FooterColumnSpecial>
+                <p>Контакты</p>
+                <div>Куйбышева 9, каб. 310</div>
+                <div>Мтс 29 710 73 38 (Shop)</div>
+                <div>+375 162 23 67 91 (Office)</div>
+                <div>info@bel-solar.by</div>
+              </FooterColumnSpecial>
+            </div>
+          </UpperFooter>
+        )}
         <LowerFooter>
           <p>© 2018 BELSOLAR. ВСЕ ПРАВА ЗАЩИЩЕНЫ</p>
         </LowerFooter>

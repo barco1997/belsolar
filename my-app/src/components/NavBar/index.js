@@ -300,7 +300,11 @@ export class NavBar extends React.Component {
             </Menu>
           </div>
         </NavBarWrapper>
-        <Number>+375 (29) 622-41-41</Number>
+        <Number>
+          +375 29 710 73 38 Магазин
+          <br />
+          +375 162 23 67 91 Офис
+        </Number>
       </AdditionalWrapper>
     );
   }

@@ -71,8 +71,8 @@ const CollaborationForm = ({
             <TextField
               error={!!(errors.name && touched.name)}
               id="name"
-              label="Your name"
-              placeholder="Enter your name"
+              label="Ваше имя"
+              placeholder="Введите ваше имя"
               value={values.name}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -87,8 +87,8 @@ const CollaborationForm = ({
             <TextField
               error={!!(errors.phone && touched.phone)}
               id="phone"
-              label="Telephone number"
-              placeholder="Enter your phone"
+              label="Телефон"
+              placeholder="Введите ваш телефон"
               value={values.phone}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -103,8 +103,8 @@ const CollaborationForm = ({
             <TextField
               error={!!(errors.company && touched.company)}
               id="company"
-              label="Title"
-              placeholder="Enter your title"
+              label="Компания"
+              placeholder="Введите имя вашей компании"
               value={values.company}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -119,8 +119,8 @@ const CollaborationForm = ({
             <TextField
               error={!!(errors.description && touched.description)}
               id="description"
-              label="Tell us about ur need"
-              placeholder="more"
+              label="Напишите ваш вопрос"
+              placeholder="подробнее"
               value={values.description}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -311,7 +311,8 @@ export class ContactFrame extends React.Component {
                 <br /> оф. 310.
               </AddressCaption>
               <LittleTitle>Телефон:</LittleTitle>
-              <AddressCaption>8 0162 23 67 91</AddressCaption>
+              <AddressCaption>Мтс 29 710 73 38 (Shop)</AddressCaption>
+              <AddressCaption>+375 162 23 67 91 (Office)</AddressCaption>
               <LittleTitle>Почта:</LittleTitle>
               <AddressCaption>info@bel-solar.by</AddressCaption>
             </div>
