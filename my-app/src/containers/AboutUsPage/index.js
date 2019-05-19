@@ -103,7 +103,7 @@ export class AboutUsPage extends React.Component {
         <BackGround>
           <div style={{ marginTop: '70px' }} />
           <StyledImage src={background} alt="lol" />
-          <NewCard
+          <UsCard
             img={photo1}
             title="Кто мы?"
             text="Компания ’’Белсолар’’ основана в 2016 году для внедрения инновационных технологий в сфере энергетики для потребительских нужд населению. Мы работаем с крупными партнерами в Германии, Польше, Украине, Китае."

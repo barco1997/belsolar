@@ -7,28 +7,34 @@ import { media } from '../../utils/media';
 
 const CatalogueCardWrapper = styled.div`
   flex-direction: row;
-  min-height: 580px;
+  /*min-height: 580px;*/
   display: flex;
+  padding: 80px 12vw;
+  font-family: 'Montserrat';
+  font-size: 17px;
+  font-weight: normal;
+  flex-wrap: ${props => (props.right ? 'wrap-reverse' : 'wrap')};
+  background: ${props => (props.right ? 'white' : '#f4f4f4')};
   ${media.desktop`
   align-items: center;
   
   font-size: 15px;
   
   `};
-
-  font-family: 'Montserrat';
-  font-size: 17px;
-  font-weight: normal;
-  flex-wrap: ${props => (props.right ? 'wrap-reverse' : 'wrap')};
-  background: ${props => (props.right ? 'white' : '#f4f4f4')};
+  ${media.tablet`
+    padding: 60px 7vw;
+  `};
+  ${media.phone`
+    padding: 20px 7vw;
+  `};
 `;
 
 const Header = styled.div`
   ${media.desktop`
   font-size: 28px;
   text-align: flex-start;
-  margin-left: 5vw;
-  margin-right: 5vw;
+  /*margin-left: 5vw;
+  margin-right: 5vw;*/
   
   `};
   ${media.phone`
@@ -49,8 +55,8 @@ const Imagine = styled.div`
   align-items: center;
   `};
 
-  padding-right: ${props => (props.right ? '12vw' : '0px')};
-  padding-left: ${props => (props.right ? '20px' : '12vw')};
+  padding-right: ${props => (props.right ? '0' : '0px')};
+  padding-left: ${props => (props.right ? '20px' : '0')};
   align-items: ${props => (props.right ? 'flex-end' : 'flex-start')}
   justify-content: center;
   display: flex;
@@ -59,22 +65,30 @@ const Imagine = styled.div`
 `;
 
 const Image = styled.img`
-  ${media.desktop`
-  min-width: 320px;
-  width: 100%;
-  margin-top: 0px;
-  `};
+  margin-right: ${props => (props.right ? '0px' : '70px')};
+  margin-left: ${props => (props.right ? '70px' : '0px')};
   height: 320px;
   width: 565px;
   object-fit: cover;
   margin-top: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  ${media.desktop`
+  width: 370px;
+  height: 250px;
+  `};
+  ${media.phone`
+  
+  margin-right: 0px;
+  margin-left: 0px;
+  width: 100%;
+  min-width: 320px;
+  `};
 `;
 
 const ContactWrap = styled.div`
   ${media.desktop`
   
-  padding-right: ${props => (props.right ? '20px' : '7vw')};
+  padding-right: ${props => (props.right ? '20px' : '0')};
   `};
 
   ${media.tablet`
@@ -83,7 +97,7 @@ const ContactWrap = styled.div`
   padding-left: 10px;
   `};
   padding-right: 20px;
-  padding-left: ${props => (props.right ? '12vw' : '0')};
+  padding-left: ${props => (props.right ? '0' : '0')};
   justify-content: center;
   align-items: flex-start;
   display: flex;
@@ -98,8 +112,8 @@ const ContactWrap = styled.div`
 const LittleText = styled.div`
   ${media.desktop`
   font-size: 12px;
-  margin-left: 5vw;
-  margin-right: 5vw;
+  /*margin-left: 5vw;
+  margin-right: 5vw;*/
   margin-top: 28px;
   `};
   opacity: 0.5;

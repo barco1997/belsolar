@@ -8,10 +8,10 @@ import { media } from '../../utils/media';
 const CatalogueCardWrapper = styled.div`
   /*flex-direction: row;
   flex-wrap: ${props => (props.right ? 'wrap-reverse' : 'wrap')};*/
-  min-height: 580px;
+  /*min-height: 580px;*/
   display: flex;
   flex-direction: row;
-  padding: 0vw 12vw;
+  padding: 80px 12vw;
   align-items: center;
   font-family: 'Montserrat';
   font-size: 17px;
@@ -24,10 +24,10 @@ const CatalogueCardWrapper = styled.div`
   
   `};
   ${media.tablet`
-    padding: 0vw 7vw;
+    padding: 60px 7vw;
   `};
   ${media.phone`
-    padding: 0vw 7vw;
+    padding: 20px 7vw;
   `};
 `;
 
@@ -77,13 +77,13 @@ const Imagine = styled.div`
 
 const Image = styled.img`
   float: ${props => (props.right ? 'right' : 'left')};
-  margin-right: ${props => (props.right ? '0px' : '50px')};
-  margin-left: ${props => (props.right ? '50px' : '0px')};
+  margin-right: ${props => (props.right ? '0px' : '70px')};
+  margin-left: ${props => (props.right ? '70px' : '0px')};
   height: 320px;
   width: 565px;
   object-fit: cover;
   margin-top: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   ${media.desktop`
   width: 370px;
   height: 250px;
@@ -123,6 +123,7 @@ const ContactWrap = styled.div`
 
 const LittleText = styled.div`
   opacity: 0.5;
+
   font-size: 17px;
   font-weight: normal;
   margin-top: 38px;
