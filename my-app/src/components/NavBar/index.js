@@ -14,6 +14,7 @@ import { media } from '../../utils/media';
 import MenuWrapper from '../MenuWrapper/index';
 import MenuItem from '../MenuItem/index';
 import logo from './belsolar.svg';
+import { otherLangWebLocation, BY } from '../../constants/api';
 //  import SendButton from 'components/SendButton';
 //  import EyelandTagBlock from 'components/EyelandTagBlock';
 //  import SocialTagBlock from 'components/SocialTagBlock';
@@ -133,7 +134,7 @@ const LanguageToggle = styled.div`
   font-weight: normal;
   ${media.desktop`display: none;`};
 
-  & > div {
+  & > a {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -141,14 +142,18 @@ const LanguageToggle = styled.div`
     padding: 7px;
   }
 `;
-const Ru = styled.div`
-  color: white;
-  background: #2ecc71;
+const Ru = styled.a`
+  display: block;
+  text-decoration: none;
+  color: ${props => (props.selected ? 'white' : '#949494')};
+  background: ${props => (props.selected ? '#2ecc71' : '#e8ebef')};
 `;
 
-const En = styled.div`
-  color: #949494;
-  background: #e8ebef;
+const En = styled.a`
+  display: block;
+  text-decoration: none;
+  color: ${props => (props.selected ? 'white' : '#949494')};
+  background: ${props => (props.selected ? '#2ecc71' : '#e8ebef')};
 `;
 
 const Number = styled.div`
@@ -201,20 +206,31 @@ const NavMenuItem = styled(NavLink)`
 
 /* eslint-disable react/prefer-stateless-function */
 export class NavBar extends React.Component {
-  //  constructor(props, context) {
-  //  super(props, context);
-  //    this.state = {
-  //    id: this.getId(),
-  //  };
-  //  this.getId = this.getId.bind(this);
-  //}
-  state = {
-    openLeft: false,
-  };
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      openLeft: false,
+    };
+    this.disableABY = this.disableABY.bind(this);
+    this.disableAEN = this.disableAEN.bind(this);
+  }
+  //state = {
+  //  openLeft: false,
+  //};
   //getId() {
   // const currentLocation = this.props.location.pathname.slice(14);
   // return currentLocation; <NavMenuItem to="/main">О&nbsp;компании</NavMenuItem>
   //}
+  disableABY(e) {
+    if (BY) {
+      e.preventDefault();
+    }
+  }
+  disableAEN(e) {
+    if (!BY) {
+      e.preventDefault();
+    }
+  }
   render() {
     const isOpen = this.state.openLeft;
     return (
@@ -248,8 +264,20 @@ export class NavBar extends React.Component {
                 КОНТАКТЫ
               </NavMenuItem>
               <LanguageToggle>
-                <En>En</En>
-                <Ru>Ru</Ru>
+                <En
+                  selected={!BY}
+                  href={BY ? otherLangWebLocation : '#'}
+                  onClick={this.disableAEN}
+                >
+                  En
+                </En>
+                <Ru
+                  selected={BY}
+                  href={BY ? '#' : otherLangWebLocation}
+                  onClick={this.disableABY}
+                >
+                  Ru
+                </Ru>
               </LanguageToggle>
 
               <Burger

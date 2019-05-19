@@ -77,10 +77,10 @@ export class ProducerFrame extends React.Component {
     this.setState({
       index: value,
     });
-    console.log('come here', value);
   }
 
   render() {
+    console.log('come here', this.props.posts);
     return (
       <div>
         <CatalogueCardWrapper>

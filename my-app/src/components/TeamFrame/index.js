@@ -5,6 +5,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { media } from '../../utils/media';
 import { TeamCard } from '../TeamCard';
+import { wpAdminApi } from '../../constants/api';
 import axios from 'axios';
 const CatCardWrapper = styled.div`
   flex-direction: row;
@@ -57,9 +58,7 @@ export class TeamFrame extends React.Component {
   }
   componentDidMount() {
     axios
-      .get(
-        'http://u2289.blue.elastictech.org/wp-json/wp/v2/participants-api?_embed',
-      )
+      .get(`${wpAdminApi}/wp-json/wp/v2/participants-api?_embed`)
       .then(res => {
         this.setState({
           posts: res.data,

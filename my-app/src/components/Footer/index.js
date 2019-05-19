@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { media } from '../../utils/media';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { wpAdminApi } from '../../constants/api';
 //  import SendButton from 'components/SendButton';
 //  import EyelandTagBlock from 'components/EyelandTagBlock';
 //  import SocialTagBlock from 'components/SocialTagBlock';
@@ -117,9 +118,7 @@ export class Footer extends React.Component {
   }
   componentDidMount() {
     axios
-      .get(
-        'http://u2289.blue.elastictech.org/wp-json/wp/v2/products-api?_embed',
-      )
+      .get(`${wpAdminApi}/wp-json/wp/v2/products-api?_embed`)
       .then(res => {
         this.setState({
           posts: res.data,
@@ -127,9 +126,7 @@ export class Footer extends React.Component {
 
         //start of second axios
         axios
-          .get(
-            'http://u2289.blue.elastictech.org/wp-json/wp/v2/services-api?_embed',
-          )
+          .get(`${wpAdminApi}/wp-json/wp/v2/services-api?_embed`)
           .then(resService => {
             this.setState({
               services: resService.data,

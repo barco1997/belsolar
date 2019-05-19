@@ -4,6 +4,7 @@ import React from 'react';
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { media } from '../../utils/media';
+import { wpAdminApi } from '../../constants/api';
 import axios from 'axios';
 import ServiceItem from '../ServiceItem/index';
 import LinkButton from '../LinkButton/index';
@@ -143,9 +144,7 @@ export class ServicesFrame extends React.Component {
   }
   componentDidMount() {
     axios
-      .get(
-        'http://u2289.blue.elastictech.org/wp-json/wp/v2/services-api?_embed',
-      )
+      .get(`${wpAdminApi}/wp-json/wp/v2/services-api?_embed`)
       .then(res => {
         this.setState({
           posts: res.data.slice(0, 3),

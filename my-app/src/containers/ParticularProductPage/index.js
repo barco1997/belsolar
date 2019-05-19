@@ -10,7 +10,7 @@ import { media } from '../../utils/media';
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import axios from 'axios';
-
+import { wpAdminApi } from '../../constants/api';
 import NavBar from '../../components/NavBar/index';
 //  import LinkButton from '../../components/LinkButton/index';
 import Footer from '../../components/Footer/index';
@@ -76,15 +76,17 @@ export class ContactsPage extends React.Component {
   componentDidMount() {
     axios
       .get(
-        'http://u2289.blue.elastictech.org/wp-json/wp/v2/products-api/'.concat(
+        `${wpAdminApi}/wp-json/wp/v2/products-api/`.concat(
           this.props.match.params.id,
         ),
       )
       .then(res => {
+        console.log('particular-post', res);
         let companies = [];
         let resources = [];
-
+        //.replace(/\>\s\</g, '><')
         const string = res.data.content.rendered;
+        console.log('particular-post', string);
         const regex = /<li>(.*?)\n<ol>\n((?:.*\n)*?)<\/ol>\n<\/li>\n/g;
         let match = regex.exec(string);
         while (match) {

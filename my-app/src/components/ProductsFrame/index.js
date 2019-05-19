@@ -5,6 +5,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { media } from '../../utils/media';
 import axios from 'axios';
+import { wpAdminApi } from '../../constants/api';
 import ProductItem from '../ProductItem/index';
 import LinkButton from '../LinkButton/index';
 const Description = styled.div`
@@ -169,9 +170,7 @@ export class ProductsFrame extends React.Component {
   }
   componentDidMount() {
     axios
-      .get(
-        'http://u2289.blue.elastictech.org/wp-json/wp/v2/products-api?_embed',
-      )
+      .get(`${wpAdminApi}/wp-json/wp/v2/products-api?_embed`)
       .then(res => {
         this.setState({
           posts: this.props.main ? res.data.slice(0, 4) : res.data,

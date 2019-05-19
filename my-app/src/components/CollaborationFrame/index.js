@@ -4,6 +4,7 @@ import React from 'react';
 //  import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import axios from 'axios';
+import { wpAdminApi } from '../../constants/api';
 import { media } from '../../utils/media';
 //  import logo from './logo.png';
 const CatCardWrapper = styled.div`
@@ -53,9 +54,7 @@ export class CollaborationFrame extends React.Component {
   }
   componentDidMount() {
     axios
-      .get(
-        'http://u2289.blue.elastictech.org/wp-json/wp/v2/partners-api?_embed',
-      )
+      .get(`${wpAdminApi}/wp-json/wp/v2/partners-api?_embed`)
       .then(res => {
         this.setState({
           posts: res.data,

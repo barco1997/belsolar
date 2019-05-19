@@ -11,6 +11,7 @@ import { media } from '../../utils/media';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import { withFormik } from 'formik';
+import { mailerLocation } from '../../constants/api';
 import axios from 'axios';
 import * as Yup from 'yup';
 import bg from './bg.svg';
@@ -180,7 +181,7 @@ const EnhancedForm = withFormik({
 
   handleSubmit: values => {
     axios
-      .post('http://test.u2289.blue.elastictech.org/php/mailer.php', {
+      .post(`${mailerLocation}/php/mailer.php`, {
         name: values.name,
         number: values.phone,
         title: values.company,

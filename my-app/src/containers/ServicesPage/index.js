@@ -27,6 +27,7 @@ import axios from 'axios';
 //  import ChipInput from 'material-ui-chip-input';
 //  import { withFormik } from 'formik';
 //  import * as Yup from 'yup';
+import { wpAdminApi } from '../../constants/api';
 import NavBar from '../../components/NavBar/index';
 import ScrollToTopOnMount from '../../components/ScrollToTopOnMount';
 //  import LinkButton from '../../components/LinkButton/index';
@@ -89,9 +90,7 @@ export class ServicesPage extends React.Component {
   }
   componentDidMount() {
     axios
-      .get(
-        'http://u2289.blue.elastictech.org/wp-json/wp/v2/services-api?_embed',
-      )
+      .get(`${wpAdminApi}/wp-json/wp/v2/services-api?_embed`)
       .then(res => {
         this.setState({
           first: res.data.slice(0, 1),

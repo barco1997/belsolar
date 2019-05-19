@@ -134,7 +134,13 @@ export class ResourceCard extends React.Component {
     return (
       <ProductItemWrapper>
         <Header>{this.props.item.name}</Header>
-        <a href={this.props.item.src} className="buttonDownload" download>
+        <a
+          href={this.props.item.src}
+          className="buttonDownload"
+          download
+          rel="noopener noreferrer"
+          target="_blank"
+        >
           <SaveText>Скачать PDF</SaveText>
         </a>
       </ProductItemWrapper>
