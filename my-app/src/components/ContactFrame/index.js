@@ -245,18 +245,18 @@ const LittleTitle = styled.div`
 
   font-size: 17px;
   font-weight: normal;
-  margin-top: 38px;
+  margin-top: 28px;
 `;
 
 const AddressCaption = styled.div`
   ${media.desktop`
-  font-size: 22px;
+  font-size: 17px;
   
   `};
 
-  font-size: 27px;
+  font-size: 20px;
   font-weight: 700;
-  margin-top: 15px;
+  margin-top: 8px;
 `;
 
 const FormWrap = styled.div`
@@ -309,12 +309,19 @@ export class ContactFrame extends React.Component {
               <LittleTitle>Адрес:</LittleTitle>
               <AddressCaption>
                 г. Брест, ул. Куйбышева 9,
-                <br /> оф. 310.
+                <br /> оф.104. г.
               </AddressCaption>
-              <LittleTitle>Телефон:</LittleTitle>
-              <AddressCaption>Мтс 29 710 73 38 (Shop)</AddressCaption>
-              <AddressCaption>+375 162 23 67 91 (Office)</AddressCaption>
               <LittleTitle>Почта:</LittleTitle>
+              <AddressCaption>shop@bel-solar.by</AddressCaption>
+              <LittleTitle>Телефон:</LittleTitle>
+              <AddressCaption>Мтс 29 710 73 38</AddressCaption>
+              <AddressCaption>Городской +375 162 34 21 55</AddressCaption>
+              <AddressCaption>Инстаграм shopbelsolar.by </AddressCaption>
+              <LittleTitle>Юр. адрес:</LittleTitle>
+              <AddressCaption>
+                Брест, ул. Куйбышева 9, <br /> оф. 310
+              </AddressCaption>
+              <AddressCaption>+375 162 23 67 91 Офис</AddressCaption>
               <AddressCaption>info@bel-solar.by</AddressCaption>
             </div>
           </ContactWrap>

@@ -171,10 +171,10 @@ export class Footer extends React.Component {
                 ))}
               </FooterColumn>
               <FooterColumnSpecial>
-                <p>Контакты</p>
-                <div>Куйбышева 9, каб. 310</div>
-                <div>Мтс 29 710 73 38 (Shop)</div>
-                <div>+375 162 23 67 91 (Office)</div>
+                <p>Юридический адрес</p>
+                <div>Брест, ул. Куйбышева 9, </div>
+                <div>оф. 310</div>
+                <div>+375 162 23 67 91 Офис</div>
                 <div>info@bel-solar.by</div>
               </FooterColumnSpecial>
             </div>

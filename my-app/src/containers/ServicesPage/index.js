@@ -38,6 +38,7 @@ import Footer from '../../components/Footer/index';
 import background from './main.png';
 
 import { ServiceCard } from '../../components/ServiceCard';
+import { NewServiceCard } from '../../components/NewServiceCard';
 //  import photo11 from './photo11.png';
 //  import photo22 from './photo22.png';
 //  import photo33 from './photo33.png';
@@ -120,7 +121,7 @@ export class ServicesPage extends React.Component {
           >
             <StyledImage src={background} alt="lol" />
             {this.state.first.map(post => (
-              <ServiceCard
+              <NewServiceCard
                 title={post.title.rendered}
                 text={post.content.rendered}
                 key={post.id}
@@ -129,7 +130,7 @@ export class ServicesPage extends React.Component {
             ))}
 
             {this.state.posts.map((post, index) => (
-              <ServiceCard
+              <NewServiceCard
                 right={!isOdd(index)}
                 title={post.title.rendered}
                 text={post.content.rendered}

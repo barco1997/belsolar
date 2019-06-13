@@ -83,7 +83,7 @@ const Image = styled.img`
   width: 565px;
   object-fit: cover;
   margin-top: 40px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   ${media.desktop`
   width: 370px;
   height: 250px;
@@ -141,7 +141,7 @@ const LittleText = styled.div`
   `};
 `;
 
-export class NewCard extends React.Component {
+export class NewServiceCard extends React.Component {
   //  constructor(props, context) {
   //  super(props, context);
   //    this.state = {
@@ -161,31 +161,36 @@ export class NewCard extends React.Component {
           <ContactWrap right>
             <div>
               <Header>{this.props.title}</Header>
-              <LittleText>{this.props.text}</LittleText>
+              <LittleText
+                dangerouslySetInnerHTML={{ __html: this.props.text }}
+              />
             </div>
           </ContactWrap>
         )}
 
         <Imagine right={this.props.right}>
-          <Image src={this.props.img} alt="ahahah" right={this.props.right} />
+          <Image src={this.props.img} alt="ahahah" />
         </Imagine>
         {!this.props.right && (
           <ContactWrap>
             <div>
               <Header>{this.props.title}</Header>
-              <LittleText>{this.props.text}</LittleText>
+              <LittleText
+                dangerouslySetInnerHTML={{ __html: this.props.text }}
+              />
             </div>
           </ContactWrap>
         )*/}
+
         <SubWrapper>
           <Image src={this.props.img} alt="ahahah" right={this.props.right} />
 
           <Header>{this.props.title}</Header>
-          <LittleText>{this.props.text}</LittleText>
+          <LittleText dangerouslySetInnerHTML={{ __html: this.props.text }} />
         </SubWrapper>
       </CatalogueCardWrapper>
     );
   }
 }
 
-export default NewCard;
+export default NewServiceCard;

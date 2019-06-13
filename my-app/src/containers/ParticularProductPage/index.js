@@ -61,6 +61,70 @@ const StyledImage = styled.img`
   `};
 `;
 
+const Header = styled.div`
+  color: white;
+  font-size: 35px;
+  font-family: 'Montserrat';
+  font-weight: 500;
+`;
+
+const DescriptionCard = styled.div`
+  color: white;
+  padding: 50px 0px;
+  display: flex;
+  flex-direction: column;
+
+  ${media.desktop`
+  align-items: center;
+  padding-left: 7vw;
+  padding-right: 7vw;
+  font-size: 15px;
+  `};
+  background: white;
+  font-family: 'Montserrat';
+  font-size: 17px;
+  font-weight: normal;
+  padding-left: 12vw;
+  padding-right: 12vw;
+`;
+
+const DescriptionHeader = styled.div`
+  width: 100%;
+  color: black;
+  ${media.desktop`
+  font-size: 32px;
+  
+  `};
+
+  font-size: 40px;
+  font-weight: 700;
+  margin-top: 90px;
+  ${media.phone`
+  margin-top: 35px;
+  `};
+`;
+
+const DescriptionText = styled.div`
+  width: 100%;
+  color: black;
+  margin-top: 60px;
+  ${media.phone`
+  margin-top: 35px;
+  `};
+
+  ${media.desktop`
+  font-size: 12px;
+  /*margin-left: 5vw;
+  margin-right: 5vw;*/
+  margin-top: 28px;
+  `};
+  opacity: 0.5;
+  line-height: 1.6;
+  font-size: 17px;
+  font-weight: normal;
+  margin-top: 38px;
+`;
+
 /* eslint-disable react/prefer-stateless-function */
 export class ContactsPage extends React.Component {
   constructor(props) {
@@ -68,7 +132,8 @@ export class ContactsPage extends React.Component {
     this.state = {
       posts: null,
       pdfs: null,
-
+      title: null,
+      description: null,
       index: 0,
     };
   }
@@ -84,9 +149,15 @@ export class ContactsPage extends React.Component {
         console.log('particular-post', res);
         let companies = [];
         let resources = [];
+        let description;
         //.replace(/\>\s\</g, '><')
         const string = res.data.content.rendered;
         console.log('particular-post', string);
+        const littleRegex = /<p>(.*?)<\/p>/;
+        let firstMatch = littleRegex.exec(string);
+        if (firstMatch) {
+          description = firstMatch[1];
+        }
         const regex = /<li>(.*?)\n<ol>\n((?:.*\n)*?)<\/ol>\n<\/li>\n/g;
         let match = regex.exec(string);
         while (match) {
@@ -102,11 +173,14 @@ export class ContactsPage extends React.Component {
         this.setState({
           posts: companies,
           pdfs: resources,
+          title: res.data.title.rendered,
+          description: description,
         });
       })
       .catch(error => console.log(error));
   }
   render() {
+    console.log('Description', this.state.description);
     return (
       <CouponInfoWrapper>
         <ScrollToTopOnMount />
@@ -114,9 +188,29 @@ export class ContactsPage extends React.Component {
           <NavBar />
         </StyledBar>
         <BackGround>
-          <div style={{ marginTop: '70px' }} />
+          <div
+            style={{
+              marginTop: '70px',
+              width: '100%',
+              alignItems: 'center',
+              height: '230px',
+              background: 'rgba(0,0,0,0)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              position: 'absolute',
+            }}
+          >
+            <Header>{this.state.title}</Header>
+          </div>
           <StyledImage src={background} alt="lol" />
           <div>
+            <DescriptionCard>
+              <DescriptionHeader>Описание:</DescriptionHeader>
+              <DescriptionText
+                dangerouslySetInnerHTML={{ __html: this.state.description }}
+              />
+            </DescriptionCard>
             {this.state.posts && (
               <ProducerFrame posts={this.state.posts} pdfs={this.state.pdfs} />
             )}

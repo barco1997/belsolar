@@ -117,6 +117,7 @@ const LittleText = styled.div`
   margin-top: 28px;
   `};
   opacity: 0.5;
+  line-height: 1.6;
   font-size: 17px;
   font-weight: normal;
   margin-top: 38px;
